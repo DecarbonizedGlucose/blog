@@ -1,0 +1,4 @@
+baseURL = "https://decglu001.pages.dev"
+languageCode = "zh-cn"
+title = "My Site"
+theme = "PaperMod"
