@@ -1,6 +1,6 @@
 +++
 date = '2026-08-02T15:46:23+08:00'
-draft = true
+draft = false
 title = 'SQL和数据库管理系统（MySQL）'
 
 +++
