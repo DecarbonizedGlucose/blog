@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on DecarbonizedGlucose&#39;s Site</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on DecarbonizedGlucose&#39;s Site</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 24 Feb 2026 22:20:41 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>分布式系统一致性</title>
+      <link>http://localhost:1313/posts/distributed-system-consistency/</link>
+      <pubDate>Tue, 24 Feb 2026 22:20:41 +0800</pubDate>
+      <guid>http://localhost:1313/posts/distributed-system-consistency/</guid>
+      <description>&lt;h1 id=&#34;分布式系统一致性&#34;&gt;分布式系统一致性&lt;/h1&gt;
+&lt;p&gt;在分布式系统中，一致性模型定义了多节点间数据更新的可见顺序与实时性，是权衡性能、可用性和正确性的核心。四个经典模型从强到弱依次为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;线性一致性（Linearizability）&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;顺序一致性（Sequential Consistency）&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;因果一致性（Causal Consistency）&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;最终一致性（Eventual Consistency）&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;越&lt;strong&gt;强&lt;/strong&gt;的一致性模型对系统的性能和&lt;strong&gt;可用性&lt;/strong&gt;要求越高，实际工程需要根据业务场景取舍。&lt;/p&gt;
+&lt;h2 id=&#34;线性一致性&#34;&gt;线性一致性&lt;/h2&gt;
+&lt;p&gt;每个操作在现实中需要一段时间才能完成，从逻辑上的“调用（call）开始”到“返回（return）结束”。但在这期间某个瞬间，该操作&lt;strong&gt;原子性地生效&lt;/strong&gt;了，并被其他参与者（线程、节点等）立刻感知到这个变化。&lt;/p&gt;
+&lt;p&gt;线性一致性保证了系统对外表现得像只有单一副本，无论 client 访问哪个节点，读取到的数据都是一致的。在 Raft 这样的共识协议中，一个操作必须经过多数节点确认，也就是达成共识才能生效，也就对应了操作原子性生效的那个瞬间。&lt;/p&gt;
+&lt;p&gt;在 CAP 理论中，线性一致对应 $C$（一致性）。当网络分区（$P$）发生时，系统必须拒绝请求而不是返回可能过期的数据，因此牺牲了可用性（$A$）。Raft、ZooKeeper 等走的就是 CP 优先的道路。&lt;/p&gt;
+&lt;p&gt;举个例子，用户 A 转账给用户 B 100元，B 立刻查询账户余额必须多出100元而不能是旧值。如果银行网络故障，必须拒绝这个请求，防止写入脏数据。&lt;/p&gt;
+&lt;h2 id=&#34;顺序一致性&#34;&gt;顺序一致性&lt;/h2&gt;
+&lt;p&gt;顺序一致性比线性一致性稍弱。它要求存在一个操作的全局总序，在这个总序里：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个参与者内的操作保持程序顺序&lt;/li&gt;
+&lt;li&gt;所有参与者看到的内存操作顺序是一致的，但&lt;strong&gt;不要求&lt;/strong&gt;这个顺序与真实时钟一致。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;也就是说，操作可以看起来“乱序”发生，但只要所有参与者看到的顺序一致即可。&lt;/p&gt;
+&lt;p&gt;这点区别其实影响很大。线性一致中，节点 A 在 $T_1$ 完成了写入，节点 B 在 $T_2$ 读取，那么节点 B 必须能读到这个写入。但是顺序一致中不保证，只保证所有参与者看到相同的结果。&lt;/p&gt;
+&lt;p&gt;举个例子，初始 &lt;code&gt;x=0, y=0&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Thread 1: x=1 r1=y
+Thread 2: y=1 r2=x
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最终结果应该为：&lt;code&gt;r1=1, r2=1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;所以可能的合法的执行顺序只有两种：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;T1 执行完两条后，T2 执行两条，T2 看到 &lt;code&gt;x=1, r2=1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;T2 执行完两条后，T1 执行两条，T1 看到 &lt;code&gt;y=1, r1=1&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;不符合最终结果一致的执行顺序则不符合顺序一致性。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux C/C&#43;&#43; IO多路复用</title>
+      <link>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</link>
+      <pubDate>Thu, 21 Aug 2025 01:07:55 +0800</pubDate>
+      <guid>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</guid>
+      <description>&lt;p&gt;在linux服务器编写中，为每个连接单独开一个进程/线程不现实，&lt;/p&gt;
+&lt;p&gt;我们采用io多路复用。&lt;/p&gt;
+&lt;h2 id=&#34;基本tcp-socket模型&#34;&gt;基本TCP socket模型&lt;/h2&gt;
+&lt;h2 id=&#34;selectpoll&#34;&gt;select/poll&lt;/h2&gt;
+&lt;p&gt;select内部有一个定长(1024)的bitsmap，以存储要监听特定事件的fd。fd从用户空间拷贝到内核，内核里遍历修改一遍后，再把就绪的fd拷贝到用户空间，用户再遍历一遍。&lt;/p&gt;
+&lt;p&gt;poll不再用bitsmap，改用动态数组(链表)，不再受限于特定个数的fd。&lt;/p&gt;
+&lt;p&gt;但二者其实区别不大，本质都是遍历了两遍，查找有事件的fd时间复杂度为&lt;code&gt;O(n)&lt;/code&gt;，也都需要来回拷贝fd集合。这些操作都很消耗性能。&lt;/p&gt;
+&lt;h2 id=&#34;epoll&#34;&gt;epoll&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; sockfd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;socket&lt;/span&gt;(AF_NET, SOCK_STREAM, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;bind&lt;/span&gt;( ... );
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;listen&lt;/span&gt;( ... );
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; epoll_fd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;epoll_create1&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 添加fd
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;epoll_ctl&lt;/span&gt;(epoll_fd, ...);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;epoll_wait&lt;/span&gt;( ... );
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; ( ... ) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// 有事件的fd
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;epoll不再使用线性的存储结构，改用红黑树（一种自平衡二叉树），增删改的时间复杂度一般为&lt;code&gt;O(log n)&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;epoll内部维护了一个就绪fd链表，每次&lt;code&gt;epoll_wait&lt;/code&gt;只需要处理链表，然后把所有就绪fd拷贝到用户空间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;epoll不适用轮询，而是事件驱动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;epoll有两种触发模式，&lt;strong&gt;ET&lt;/strong&gt;（边缘触发，select/poll不支持）和&lt;strong&gt;LT&lt;/strong&gt;（水平触发），区别主要体现在读上。&lt;/p&gt;
+&lt;p&gt;LT模式下，只要可读（socket读缓冲区中有数据），就会触发事件，直到缓冲区被读完。&lt;/p&gt;
+&lt;p&gt;ET模式下，仅当数据到来时（缓冲区数据从无到有）触发一次事件，后续将不再触发，即使缓冲区还有数据。&lt;/p&gt;
+&lt;p&gt;LT一般搭配阻塞读写，ET一般搭配非阻塞读写。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>零拷贝技术</title>
+      <link>http://localhost:1313/posts/zero-copy-tech/</link>
+      <pubDate>Thu, 21 Aug 2025 01:07:12 +0800</pubDate>
+      <guid>http://localhost:1313/posts/zero-copy-tech/</guid>
+      <description>&lt;h2 id=&#34;什么是零拷贝&#34;&gt;什么是零拷贝？&lt;/h2&gt;
+&lt;p&gt;利用直接内存访问（Direct Memory Access，DMA），消除数据在内存中不必要的拷贝，即零拷贝技术（Zero-Copy）。&lt;/p&gt;
+&lt;p&gt;零拷贝不是没有任何复制，而是消除了消耗CPU和内存带宽的不必要的冗余复制。&lt;/p&gt;
+&lt;h2 id=&#34;为什么要有零拷贝&#34;&gt;为什么要有零拷贝？&lt;/h2&gt;
+&lt;p&gt;传统IO过程：&lt;/p&gt;
+&lt;p&gt;用户进程&amp;ndash;&lt;code&gt;read()&lt;/code&gt;&amp;mdash;&amp;gt;CPU(转化为内核态)&amp;ndash;请求读取&amp;mdash;&amp;gt;磁盘&amp;ndash;多次缓冲区拷贝后转化为用户态&amp;mdash;&amp;gt;&lt;code&gt;read()&lt;/code&gt;返回&amp;mdash;-&amp;gt;用户进程&lt;/p&gt;
+&lt;p&gt;CPU被大量文件数据占用，多次切换上下文，期间干不了其他事情。并且，多次缓冲区的拷贝极大限制了文件传输性能。&lt;/p&gt;
+&lt;p&gt;于是Zero-Copy出现了。&lt;/p&gt;
+&lt;h2 id=&#34;优化思路&#34;&gt;优化思路&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;减少上下文切换的次数。传统文件IO（&lt;code&gt;read()&lt;/code&gt;+&lt;code&gt;write()&lt;/code&gt;）有4次上下文切换（&lt;code&gt;read&lt;/code&gt;用户-&amp;gt;内核-&amp;gt;用户，&lt;code&gt;write&lt;/code&gt;用户-&amp;gt;内核-&amp;gt;用户）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;减少各种缓冲区的拷贝次数。传统读取：磁盘控制器缓冲区-&amp;gt;内核缓冲区-&amp;gt;用户缓冲区，每次拷贝都在消耗时间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mmapwrite&#34;&gt;&lt;code&gt;mmap()&lt;/code&gt;+&lt;code&gt;write()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;read()&lt;/code&gt;会把内核缓冲区的数据拷贝到用户缓冲区，为了减少拷贝，换成&lt;code&gt;mmap()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mmap&lt;/code&gt;(Memory Map)核心思想是利用虚拟内存管理机制，在进程虚拟地址空间与物理资源（比如文件）之间建立直接的映射关系。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;sys/mman.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mmap&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; addr[.length],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           size_t length,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; prot,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; flags,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; fd,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           off_t offset);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mmap(&lt;span style=&#34;color:#66d9ef&#34;&gt;nullptr&lt;/span&gt;, file_size, PROT_READ, MAP_PRIVATE, fd, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把内核缓冲区的数据直接映射到用户缓冲区，这样就避免了一次拷贝。&lt;/p&gt;
+&lt;p&gt;然后&lt;code&gt;write()&lt;/code&gt;，把数据直接拷贝到socket缓冲区。由于数据还在内核缓冲区，这些都在内核态发生。&lt;/p&gt;
+&lt;p&gt;不过系统调用上下文切换的次数没变。&lt;/p&gt;
+&lt;h2 id=&#34;sendfile&#34;&gt;&lt;code&gt;sendfile()&lt;/code&gt;&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;sys/socket.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ssize_t &lt;span style=&#34;color:#a6e22e&#34;&gt;sendfile&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; out_fd, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; in_fd, off_t &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;offset, size_t count);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;read from &lt;code&gt;in_fd&lt;/code&gt;，然后write to &lt;code&gt;out_fd&lt;/code&gt;。offset是&lt;code&gt;in_fd&lt;/code&gt;内部的偏移量，count是最大处理长度。返回实际处理长度。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接减少了一次系统调用，减少上下文切换开销&lt;/li&gt;
+&lt;li&gt;直接把数据从内核缓冲区拷贝到socket缓冲区，不再经过用户态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这时有磁盘-&amp;gt;内核缓冲区-&amp;gt;socket缓冲区-&amp;gt;网卡，共3次拷贝（CPU一次,从内核读缓冲区到socket写缓冲区）。&lt;/p&gt;
+&lt;p&gt;如果网卡还支持SD-DMA技术，数据可以绕过sockert缓冲区，从内核缓冲区直接发送到网卡。内核空间缓冲区中对应的数据描述信息（内存地址、地址偏移量）记录到socket缓冲区中，由 DMA 根据内存地址、地址偏移量将数据批量地从内核缓冲区拷贝到网卡设备中（DMA gather copy），这样就又省去了内核空间中仅剩的 1 次 CPU 拷贝操作。&lt;/p&gt;
+&lt;h2 id=&#34;splice&#34;&gt;&lt;code&gt;splice()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;sendfile&lt;/code&gt;的局限性是，只能从本地文件的fd发送到socket fd，且在一定程度上依赖硬件支持。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
