@@ -2,3 +2,15 @@ baseURL = "https://decglu.top"
 languageCode = "zh-cn"
 title = "0xm1zu's Site"
 theme = "PaperMod"
+
+[params.homeInfoParams]
+Title = "Hi there 👋"
+Content = "I'm 0xm1zu, or, Decarbonized Glucose. 这里是我的精神病院。"
+
+[[params.socialIcons]]
+name = "bilibili"
+url = "https://space.bilibili.com/503414974"
+
+[[params.socialIcons]]
+name = "GitHub"
+url = "https://github.com/DecarbonizedGlucose"

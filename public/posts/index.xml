@@ -148,5 +148,57 @@ Thread 2: y=1 r2=x
 &lt;h2 id=&#34;splice&#34;&gt;&lt;code&gt;splice()&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;sendfile&lt;/code&gt;的局限性是，只能从本地文件的fd发送到socket fd，且在一定程度上依赖硬件支持。&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>SQL和数据库管理系统（MySQL）</title>
+      <link>http://localhost:1313/posts/sql-and-db-management-system-mysql/</link>
+      <pubDate>Sat, 02 Aug 2025 15:46:23 +0800</pubDate>
+      <guid>http://localhost:1313/posts/sql-and-db-management-system-mysql/</guid>
+      <description>&lt;h2 id=&#34;为什么需要数据库&#34;&gt;为什么需要数据库？&lt;/h2&gt;
+&lt;p&gt;数据太多，文件搞不定。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查询复杂&lt;/li&gt;
+&lt;li&gt;数据结构混乱难以维护&lt;/li&gt;
+&lt;li&gt;文件难以并发处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据库，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;结构化数据管理&lt;/li&gt;
+&lt;li&gt;高效查询&lt;/li&gt;
+&lt;li&gt;并发控制&lt;/li&gt;
+&lt;li&gt;数据安全&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据库和sql&#34;&gt;数据库和SQL&lt;/h2&gt;
+&lt;p&gt;数据库 ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关系型数据库&lt;/li&gt;
+&lt;li&gt;非关系型数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;SQL是一种管理关系型数据库的语言。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SQL (Structured Query Language)：结构化查询语言&lt;/li&gt;
+&lt;li&gt;用于操作关系型数据库：定义数据表，插入/查询/修改/删除数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mysqlsqlitepostgresql&#34;&gt;MySQL？SQLite？PostgreSQL？&lt;/h2&gt;
+&lt;p&gt;Database Management System. 是一种软件，不是数据库。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MySQL         -&amp;gt;          主流服务器端&lt;/li&gt;
+&lt;li&gt;SQLite          -&amp;gt;          嵌入式&lt;/li&gt;
+&lt;li&gt;PostgreSQL -&amp;gt;          支持复杂查询&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mysql安装&#34;&gt;MySQL安装&lt;/h2&gt;
+&lt;p&gt;Ubuntu&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install mysql-common mysql-client mysql-server
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl start mysql-server
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl enable mysql-server &lt;span style=&#34;color:#75715e&#34;&gt;# 开机自启&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Arch&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo pacman -S mariadb
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo mariadb-install-db --user&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;mysql --basedir&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/usr --datadir&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/var/lib/mysql
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl start mariadb
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl enable mariadb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;开始使用ubuntu&#34;&gt;开始使用（Ubuntu）&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo mysql
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;CREATE&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;USER&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;new_user&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;@&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;host_name&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;IDENTIFIED&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;BY&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;password115414&amp;#39;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;host_name&lt;/code&gt;=&lt;code&gt;&amp;quot;localhost&amp;quot;&lt;/code&gt; 只能从本地访问&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
