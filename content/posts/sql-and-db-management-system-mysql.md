@@ -5,7 +5,7 @@ title = 'SQL和数据库管理系统（MySQL）'
 
 +++
 
-# 为什么需要数据库？
+## 为什么需要数据库？
 数据太多，文件搞不定。
 - 查询复杂
 - 数据结构混乱难以维护
@@ -16,7 +16,7 @@ title = 'SQL和数据库管理系统（MySQL）'
 - 高效查询
 - 并发控制
 - 数据安全
-# 数据库和SQL
+## 数据库和SQL
 
 数据库 ：
 
@@ -27,7 +27,7 @@ SQL是一种管理关系型数据库的语言。
 
 - SQL (Structured Query Language)：结构化查询语言
 - 用于操作关系型数据库：定义数据表，插入/查询/修改/删除数据
-# MySQL？SQLite？PostgreSQL？
+## MySQL？SQLite？PostgreSQL？
 
 Database Management System. 是一种软件，不是数据库。
 
@@ -35,7 +35,7 @@ Database Management System. 是一种软件，不是数据库。
 - SQLite          ->          嵌入式
 - PostgreSQL ->          支持复杂查询
 
-# MySQL安装
+## MySQL安装
 
 Ubuntu
 
@@ -53,7 +53,7 @@ sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ~~~
-# 开始使用（Ubuntu）
+## 开始使用（Ubuntu）
 
 ~~~shell
 sudo mysql
@@ -88,7 +88,7 @@ REVOKE (权限) ON database.table FROM 'user_name'@'host_name';
 ~~~shell
 mysql -u new_user -p
 ~~~
-# SQL语言要点
+## SQL语言要点
 细分,
 - **DDL（数据定义语言）**
   - `CREATE TABLE` / `DROP TABLE`
@@ -99,7 +99,7 @@ mysql -u new_user -p
   - `SELECT ... FROM ... WHERE ...` (查)
 - **DCL（数据控制语言）**
   - `GRANT` / `REVOKE` (权限控制)
-# MySQL数据库
+## MySQL数据库
 
 ~~~mysql
 CREATE DATABASE database_name
@@ -107,8 +107,9 @@ SHOW DATABASES;
 USE database_name;
 DROP DATABASE [IF EXISTS] database_name;
 ~~~
-# MySQL的数据类型
-## 整数类
+## MySQL的数据类型
+
+### 整数类
 
 | 类型               | 占用空间 | 范围（有符号）   | 说明           |
 | ------------------ | -------- | ---------------- | -------------- |
@@ -117,7 +118,7 @@ DROP DATABASE [IF EXISTS] database_name;
 | `MEDIUMINT`        | 3字节    | -8百万 ~ 8百万   | 不常用         |
 | `INT` 或 `INTEGER` | 4字节    | -21亿 ~ 21亿     | 常用           |
 | `BIGINT`           | 8字节    | 极大整数         | 适合ID、金额等 |
-## 浮点类
+### 浮点类
 | 类型           | 用途     | 精度           | 说明                             |
 | -------------- | -------- | -------------- | -------------------------------- |
 | `FLOAT(M,D)`   | 小数     | 约7位有效数字  | 近似存储，速度快                 |
@@ -127,7 +128,7 @@ DROP DATABASE [IF EXISTS] database_name;
 M是总位数，D是小数位。
 
 比如，DECIMAL(10, 2) max=?
-## 字符串类型
+### 字符串类型
 
 | 类型         | 最大长度                    | 特点               |
 | ------------ | --------------------------- | ------------------ |
@@ -135,7 +136,7 @@ M是总位数，D是小数位。
 | `VARCHAR(n)` | 最多65535（受限于表总行宽） | 变长字符串，最常用 |
 
 这里n指的是最大长度，不是一定要存的长度
-## 文本类型
+### 文本类型
 
 | 类型         | 最大长度 | 用途                       |
 | ------------ | -------- | -------------------------- |
@@ -145,13 +146,13 @@ M是总位数，D是小数位。
 | `LONGTEXT`   | 4GB      | 超大文本，如文章内容、日志 |
 
 不能设置默认值，不能索引全文。
-## 二进制类型
+### 二进制类型
 - **`BINARY(n)`**
 - **`VARBINARY(n)`**
     用于存储短数据（密码等）
 - **`BLOB`**
     用于图片/二进制文件
-## 日期时间
+### 日期时间
 
 | 类型        | 格式                  | 说明              |
 | ----------- | --------------------- | ----------------- |
@@ -160,11 +161,11 @@ M是总位数，D是小数位。
 | `TIMESTAMP` | 同上                  | 会随时区变动      |
 | `TIME`      | `HH:MM:SS`            | 时间段            |
 | `YEAR`      | `YYYY`                | 年份（1901-2155） |
-## 枚举和集合
+### 枚举和集合
 - **`ENUM(a, b, c)`**  多选一
 - **`SET(a, b, c)`**  多值，相当于子集
-# 关键字
-- **`PRIMARY KEY`**: 唯一标识一条数据（一定NOT NULL，UNIQUE） 
+## 关键字
+- **`PRIMARY KEY`**: 唯一标识一条数据（一定NOT NULL，UNIQUE）
 ~~~mysql
 CREATE TABLE users (
     user_id VARCHAR(30) PRIMARY KEY,
@@ -187,7 +188,7 @@ DROP INDEX idx_username ON users;
 ~~~mysql
 SHOW INDEX FROM users;
 ~~~
-- **`NULL`** 
+- **`NULL`**
 ~~~mysql
 CREATE TABLE users (
     ...
@@ -234,7 +235,7 @@ message_id BIGINT PRIMARY KEY AUTO_INCREMENT
 ~~~mysql
 PRIMARY KEY(group_id, user_id)
 ~~~
-# 查
+## 查
 语法：
 ~~~mysql
 SELECT 列[, 列2[, 列3[...]]] FROM 表 [WHERE 条件]
@@ -251,7 +252,7 @@ SELECT 列[, 列2[, 列3[...]]] FROM 表 [WHERE 条件]
 | 统计       | `SELECT COUNT(*) FROM users;`                                | 总人数          |
 | 分组       | `SELECT gender, COUNT(*) FROM users GROUP BY gender;`        | 按性别计数      |
 | 联表       | `SELECT u.username, m.content FROM users u JOIN messages m ON u.user_id = m.sender_id;` | 查询聊天记录    |
-## 模糊匹配
+### 模糊匹配
 `%`任意数量的字符
 `-`恰好一个字符
 ~~~mysql
@@ -266,7 +267,7 @@ SELECT * FROM users WHERE username LIKE "_c%"; # 第二个字符是'c'
 ~~~mysql
 SELECT * FROM users WHERE LOWER(username) LIKE LOWER('A%');
 ~~~
-# 增删改
+## 增删改
 插入`INSERT`语法：
 ~~~mysql
 INSERT INTO 表 主键

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>DecarbonizedGlucose&#39;s Site</title>
+    <title>0xm1zu&#39;s Site</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on DecarbonizedGlucose&#39;s Site</description>
+    <description>Recent content on 0xm1zu&#39;s Site</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 24 Feb 2026 22:20:41 +0800</lastBuildDate>
@@ -13,8 +13,7 @@
       <link>http://localhost:1313/posts/distributed-system-consistency/</link>
       <pubDate>Tue, 24 Feb 2026 22:20:41 +0800</pubDate>
       <guid>http://localhost:1313/posts/distributed-system-consistency/</guid>
-      <description>&lt;h1 id=&#34;分布式系统一致性&#34;&gt;分布式系统一致性&lt;/h1&gt;
-&lt;p&gt;在分布式系统中，一致性模型定义了多节点间数据更新的可见顺序与实时性，是权衡性能、可用性和正确性的核心。四个经典模型从强到弱依次为：&lt;/p&gt;
+      <description>&lt;p&gt;在分布式系统中，一致性模型定义了多节点间数据更新的可见顺序与实时性，是权衡性能、可用性和正确性的核心。四个经典模型从强到弱依次为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;线性一致性（Linearizability）&lt;/strong&gt;&lt;/p&gt;
