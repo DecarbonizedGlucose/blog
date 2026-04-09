@@ -1,6 +1,6 @@
 +++
 date = '2026-02-24T22:20:41+08:00'
-draft = true
+draft = false
 title = '分布式系统一致性'
 
 +++
