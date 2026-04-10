@@ -6,8 +6,21 @@
     <description>Recent content in Posts on 0xm1zu&#39;s Site</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 24 Feb 2026 22:20:41 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 23:46:08 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>黄山奇石</title>
+      <link>http://localhost:1313/posts/huangshan-strange-rock/</link>
+      <pubDate>Fri, 10 Apr 2026 23:46:08 +0800</pubDate>
+      <guid>http://localhost:1313/posts/huangshan-strange-rock/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;vibe coding 派还在 code&lt;/li&gt;
+&lt;li&gt;你说什么？&lt;/li&gt;
+&lt;li&gt;哦，老爷子，你看那：vibe-coding-派-还-在-code&lt;/li&gt;
+&lt;li&gt;老王啊……我说张主管啊，怎么这种标语现在还留着？……八股余孽嘛，赶紧找人清理掉&lt;/li&gt;
+&lt;li&gt;算了，算了，留着也好，以示警世。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>分布式系统一致性</title>
       <link>http://localhost:1313/posts/distributed-system-consistency/</link>

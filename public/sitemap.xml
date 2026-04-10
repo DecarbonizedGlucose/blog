@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-02-24T22:20:41+08:00</lastmod>
+    <lastmod>2026-04-10T23:46:08+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-02-24T22:20:41+08:00</lastmod>
+    <lastmod>2026-04-10T23:46:08+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/huangshan-strange-rock/</loc>
+    <lastmod>2026-04-10T23:46:08+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/distributed-system-consistency/</loc>
     <lastmod>2026-02-24T22:20:41+08:00</lastmod>
