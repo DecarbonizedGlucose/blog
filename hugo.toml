@@ -1,11 +1,11 @@
 baseURL = "https://decglu.top"
 languageCode = "zh-cn"
-title = "0xm1zu's Site"
+title = "Caelum's Site"
 theme = "PaperMod"
 
 [params.homeInfoParams]
 Title = "Hi there 👋"
-Content = "I'm 0xm1zu, or, Decarbonized Glucose. 这里是我的精神病院。"
+Content = "I'm Caelum, or, Decarbonized Glucose. 這裡是我的精神病院。"
 
 [[params.socialIcons]]
 name = "bilibili"
