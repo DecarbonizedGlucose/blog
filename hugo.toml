@@ -14,3 +14,7 @@ url = "https://space.bilibili.com/503414974"
 [[params.socialIcons]]
 name = "GitHub"
 url = "https://github.com/DecarbonizedGlucose"
+
+[[params.socialIcons]]
+name = "x"
+url = "https://x.com/decglu001"
