@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>0xm1zu&#39;s Site</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on 0xm1zu&#39;s Site</description>
+    <title>Caelum&#39;s Site</title>
+    <link>https://decglu.top/</link>
+    <description>Recent content on Caelum&#39;s Site</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 10 Apr 2026 23:46:08 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Aug 2026 04:45:34 +0800</lastBuildDate>
+    <atom:link href="https://decglu.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI时代的知识奶头乐</title>
+      <link>https://decglu.top/posts/cognitive-tittytainment/</link>
+      <pubDate>Sat, 08 Aug 2026 04:45:34 +0800</pubDate>
+      <guid>https://decglu.top/posts/cognitive-tittytainment/</guid>
+      <description>&lt;p&gt;我越来越担心一件事：AI正在悄悄改变我&amp;quot;学习&amp;quot;这个动作的形状。&lt;/p&gt;
+&lt;p&gt;以前想弄懂一个复杂问题，得自己去啃、去查、去碰壁，那种摩擦感——查资料的辛苦、想不通的卡顿——恰恰是深度理解得以发生的地方。现在这层摩擦几乎被抹平了。同时被削弱的还有学习到新知的正向反馈。问AI，答案立刻就来，流畅、自信、结构完整。AI时代提供给了我们“知识奶头乐”。它太方便了，方便到我开始怀疑：我是不是正在失去那种&amp;quot;自己动手够到知识&amp;quot;的原始热情？&lt;/p&gt;
+&lt;p&gt;AI本身也不是个省油的灯，它给出的答案本质上是概率模型的产物——是&amp;quot;平均的&amp;quot;、&amp;ldquo;大概的&amp;rdquo;、某个视角下的拼凑，甚至可能根本不是事实。但它说话的语气太笃定了，笃定到你根本不会去追问。它还会让你自信心满满，&amp;ldquo;You&amp;rsquo;re absolutely right!&amp;quot;，而可能根本不会意识到你观点的缺陷。这就像一个谀臣，无形中害了你。&lt;/p&gt;
+&lt;p&gt;我也担心知识型人才的&amp;quot;缩水&amp;rdquo;。思考可以外包，工作可以替代。会不会有一大批人，Token花完，天才陨落？这个问题我还没有确定的答案，历史上工具从未让人真正变笨，计算器没有杀死数学家。但这一次的不同在于：AI外包的不是计算，而是理解本身，这条界限值得警惕。当我们已经习惯了用AI代替学习和思考，学习新知不再是振奋人心的探索，而是只是手指麻木地动一动就解决的是，那种原始热情一旦退去，我们对大脑的控制权是否会被一步步剥夺？&lt;/p&gt;
+&lt;p&gt;我不想简单地把AI当作洪水猛兽，但我也不想假装这种失落感不存在。它成了我大脑里近乎不可分割的一部分，能替我理解、替我工作——可正因如此，我更需要时常停下来问自己：最近一次让我兴奋到不想问AI、只想自己去啃的问题，是什么时候？&lt;/p&gt;
+&lt;p&gt;如果想不起来，那大概就是该找回那种&amp;quot;笨拙但亲手够到&amp;quot;的体验的时候了。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>鱼骨chat法</title>
+      <link>https://decglu.top/posts/fishbone-chat/</link>
+      <pubDate>Sun, 24 May 2026 17:43:41 +0800</pubDate>
+      <guid>https://decglu.top/posts/fishbone-chat/</guid>
+      <description>&lt;p&gt;用 AI 编程助手写代码，最让人头疼的问题之一是&lt;strong&gt;上下文污染&lt;/strong&gt;——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。&lt;/p&gt;
+&lt;p&gt;我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。&lt;/p&gt;
+&lt;p&gt;思路很简单：以鱼骨图为隐喻，&lt;strong&gt;主干是一个贯穿始终的主线 session&lt;/strong&gt;，负责记录整体设计思路、模块划分和关键决策；&lt;strong&gt;每一根鱼刺是一个独立的子 session&lt;/strong&gt;，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。&lt;/p&gt;
+&lt;p&gt;这样做有几个好处：子 session 上下文干净，模型不会被无关信息干扰；主线 session 始终保持高层视角，不会因为陷入细节而失去方向；出问题时也方便定位，每个 session 职责单一，回溯很直观。&lt;/p&gt;
+&lt;p&gt;本质上这是一种&lt;strong&gt;关注点分离&lt;/strong&gt;在对话管理上的应用。AI 工具的上下文窗口是有限资源，像管理代码模块一样管理它，会顺手很多。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>黄山奇石</title>
-      <link>http://localhost:1313/posts/huangshan-strange-rock/</link>
+      <link>https://decglu.top/posts/huangshan-strange-rock/</link>
       <pubDate>Fri, 10 Apr 2026 23:46:08 +0800</pubDate>
-      <guid>http://localhost:1313/posts/huangshan-strange-rock/</guid>
+      <guid>https://decglu.top/posts/huangshan-strange-rock/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;vibe coding 派还在 code&lt;/li&gt;
 &lt;li&gt;你说什么？&lt;/li&gt;
@@ -23,9 +46,9 @@
     </item>
     <item>
       <title>分布式系统一致性</title>
-      <link>http://localhost:1313/posts/distributed-system-consistency/</link>
+      <link>https://decglu.top/posts/distributed-system-consistency/</link>
       <pubDate>Tue, 24 Feb 2026 22:20:41 +0800</pubDate>
-      <guid>http://localhost:1313/posts/distributed-system-consistency/</guid>
+      <guid>https://decglu.top/posts/distributed-system-consistency/</guid>
       <description>&lt;p&gt;在分布式系统中，一致性模型定义了多节点间数据更新的可见顺序与实时性，是权衡性能、可用性和正确性的核心。四个经典模型从强到弱依次为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -68,9 +91,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>Linux C/C&#43;&#43; IO多路复用</title>
-      <link>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</link>
+      <link>https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/</link>
       <pubDate>Thu, 21 Aug 2025 01:07:55 +0800</pubDate>
-      <guid>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</guid>
+      <guid>https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/</guid>
       <description>&lt;p&gt;在linux服务器编写中，为每个连接单独开一个进程/线程不现实，&lt;/p&gt;
 &lt;p&gt;我们采用io多路复用。&lt;/p&gt;
 &lt;h2 id=&#34;基本tcp-socket模型&#34;&gt;基本TCP socket模型&lt;/h2&gt;
@@ -111,9 +134,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>零拷贝技术</title>
-      <link>http://localhost:1313/posts/zero-copy-tech/</link>
+      <link>https://decglu.top/posts/zero-copy-tech/</link>
       <pubDate>Thu, 21 Aug 2025 01:07:12 +0800</pubDate>
-      <guid>http://localhost:1313/posts/zero-copy-tech/</guid>
+      <guid>https://decglu.top/posts/zero-copy-tech/</guid>
       <description>&lt;h2 id=&#34;什么是零拷贝&#34;&gt;什么是零拷贝？&lt;/h2&gt;
 &lt;p&gt;利用直接内存访问（Direct Memory Access，DMA），消除数据在内存中不必要的拷贝，即零拷贝技术（Zero-Copy）。&lt;/p&gt;
 &lt;p&gt;零拷贝不是没有任何复制，而是消除了消耗CPU和内存带宽的不必要的冗余复制。&lt;/p&gt;
@@ -163,9 +186,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>SQL和数据库管理系统（MySQL）</title>
-      <link>http://localhost:1313/posts/sql-and-db-management-system-mysql/</link>
+      <link>https://decglu.top/posts/sql-and-db-management-system-mysql/</link>
       <pubDate>Sat, 02 Aug 2025 15:46:23 +0800</pubDate>
-      <guid>http://localhost:1313/posts/sql-and-db-management-system-mysql/</guid>
+      <guid>https://decglu.top/posts/sql-and-db-management-system-mysql/</guid>
       <description>&lt;h2 id=&#34;为什么需要数据库&#34;&gt;为什么需要数据库？&lt;/h2&gt;
 &lt;p&gt;数据太多，文件搞不定。&lt;/p&gt;
 &lt;ul&gt;

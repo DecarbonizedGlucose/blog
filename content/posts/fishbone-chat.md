@@ -1,5 +1,5 @@
 +++
-title: "鱼骨chat法"
+title = "鱼骨chat法"
 date = "2026-05-24T17:43:41+08:00"
 draft = false
 +++
