@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Linux C/C&#43;&#43; IO多路复用 | Caelum&#39;s Site</title>
 <meta name="keywords" content="">
 <meta name="description" content="在linux服务器编写中，为每个连接单独开一个进程/线程不现实，
@@ -45,16 +45,16 @@ LT模式下，只要可读（socket读缓冲区中有数据），就会触发事
 ET模式下，仅当数据到来时（缓冲区数据从无到有）触发一次事件，后续将不再触发，即使缓冲区还有数据。
 LT一般搭配阻塞读写，ET一般搭配非阻塞读写。">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/">
+<link rel="canonical" href="https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css" integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://decglu.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://decglu.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://decglu.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://decglu.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://decglu.top/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/">
+<link rel="alternate" hreflang="en" href="https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/">
 <noscript>
     <style>
         #theme-toggle,
@@ -106,13 +106,98 @@ LT一般搭配阻塞读写，ET一般搭配非阻塞读写。">
         document.querySelector("html").dataset.theme = 'light';
     }
 
+</script><meta property="og:url" content="https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/">
+  <meta property="og:site_name" content="Caelum&#39;s Site">
+  <meta property="og:title" content="Linux C/C&#43;&#43; IO多路复用">
+  <meta property="og:description" content="在linux服务器编写中，为每个连接单独开一个进程/线程不现实，
+我们采用io多路复用。
+基本TCP socket模型 select/poll select内部有一个定长(1024)的bitsmap，以存储要监听特定事件的fd。fd从用户空间拷贝到内核，内核里遍历修改一遍后，再把就绪的fd拷贝到用户空间，用户再遍历一遍。
+poll不再用bitsmap，改用动态数组(链表)，不再受限于特定个数的fd。
+但二者其实区别不大，本质都是遍历了两遍，查找有事件的fd时间复杂度为O(n)，也都需要来回拷贝fd集合。这些操作都很消耗性能。
+epoll int sockfd = socket(AF_NET, SOCK_STREAM, 0); bind( ... ); listen( ... ); int epoll_fd = epoll_create1(0); // 添加fd epoll_ctl(epoll_fd, ...); while (1) { int n = epoll_wait( ... ); for ( ... ) { // 有事件的fd } } epoll不再使用线性的存储结构，改用红黑树（一种自平衡二叉树），增删改的时间复杂度一般为O(log n)。
+epoll内部维护了一个就绪fd链表，每次epoll_wait只需要处理链表，然后把所有就绪fd拷贝到用户空间。
+epoll不适用轮询，而是事件驱动。
+epoll有两种触发模式，ET（边缘触发，select/poll不支持）和LT（水平触发），区别主要体现在读上。
+LT模式下，只要可读（socket读缓冲区中有数据），就会触发事件，直到缓冲区被读完。
+ET模式下，仅当数据到来时（缓冲区数据从无到有）触发一次事件，后续将不再触发，即使缓冲区还有数据。
+LT一般搭配阻塞读写，ET一般搭配非阻塞读写。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-21T01:07:55+08:00">
+    <meta property="article:modified_time" content="2025-08-21T01:07:55+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux C/C&#43;&#43; IO多路复用">
+  <meta name="twitter:description" content="在linux服务器编写中，为每个连接单独开一个进程/线程不现实，
+我们采用io多路复用。
+基本TCP socket模型 select/poll select内部有一个定长(1024)的bitsmap，以存储要监听特定事件的fd。fd从用户空间拷贝到内核，内核里遍历修改一遍后，再把就绪的fd拷贝到用户空间，用户再遍历一遍。
+poll不再用bitsmap，改用动态数组(链表)，不再受限于特定个数的fd。
+但二者其实区别不大，本质都是遍历了两遍，查找有事件的fd时间复杂度为O(n)，也都需要来回拷贝fd集合。这些操作都很消耗性能。
+epoll int sockfd = socket(AF_NET, SOCK_STREAM, 0); bind( ... ); listen( ... ); int epoll_fd = epoll_create1(0); // 添加fd epoll_ctl(epoll_fd, ...); while (1) { int n = epoll_wait( ... ); for ( ... ) { // 有事件的fd } } epoll不再使用线性的存储结构，改用红黑树（一种自平衡二叉树），增删改的时间复杂度一般为O(log n)。
+epoll内部维护了一个就绪fd链表，每次epoll_wait只需要处理链表，然后把所有就绪fd拷贝到用户空间。
+epoll不适用轮询，而是事件驱动。
+epoll有两种触发模式，ET（边缘触发，select/poll不支持）和LT（水平触发），区别主要体现在读上。
+LT模式下，只要可读（socket读缓冲区中有数据），就会触发事件，直到缓冲区被读完。
+ET模式下，仅当数据到来时（缓冲区数据从无到有）触发一次事件，后续将不再触发，即使缓冲区还有数据。
+LT一般搭配阻塞读写，ET一般搭配非阻塞读写。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://decglu.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Linux C/C++ IO多路复用",
+      "item": "https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux C/C++ IO多路复用",
+  "name": "Linux C\/C\u002b\u002b IO多路复用",
+  "description": "在linux服务器编写中，为每个连接单独开一个进程/线程不现实，\n我们采用io多路复用。\n基本TCP socket模型 select/poll select内部有一个定长(1024)的bitsmap，以存储要监听特定事件的fd。fd从用户空间拷贝到内核，内核里遍历修改一遍后，再把就绪的fd拷贝到用户空间，用户再遍历一遍。\npoll不再用bitsmap，改用动态数组(链表)，不再受限于特定个数的fd。\n但二者其实区别不大，本质都是遍历了两遍，查找有事件的fd时间复杂度为O(n)，也都需要来回拷贝fd集合。这些操作都很消耗性能。\nepoll int sockfd = socket(AF_NET, SOCK_STREAM, 0); bind( ... ); listen( ... ); int epoll_fd = epoll_create1(0); // 添加fd epoll_ctl(epoll_fd, ...); while (1) { int n = epoll_wait( ... ); for ( ... ) { // 有事件的fd } } epoll不再使用线性的存储结构，改用红黑树（一种自平衡二叉树），增删改的时间复杂度一般为O(log n)。\nepoll内部维护了一个就绪fd链表，每次epoll_wait只需要处理链表，然后把所有就绪fd拷贝到用户空间。\nepoll不适用轮询，而是事件驱动。\nepoll有两种触发模式，ET（边缘触发，select/poll不支持）和LT（水平触发），区别主要体现在读上。\nLT模式下，只要可读（socket读缓冲区中有数据），就会触发事件，直到缓冲区被读完。\nET模式下，仅当数据到来时（缓冲区数据从无到有）触发一次事件，后续将不再触发，即使缓冲区还有数据。\nLT一般搭配阻塞读写，ET一般搭配非阻塞读写。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "在linux服务器编写中，为每个连接单独开一个进程/线程不现实，\n我们采用io多路复用。\n基本TCP socket模型 select/poll select内部有一个定长(1024)的bitsmap，以存储要监听特定事件的fd。fd从用户空间拷贝到内核，内核里遍历修改一遍后，再把就绪的fd拷贝到用户空间，用户再遍历一遍。\npoll不再用bitsmap，改用动态数组(链表)，不再受限于特定个数的fd。\n但二者其实区别不大，本质都是遍历了两遍，查找有事件的fd时间复杂度为O(n)，也都需要来回拷贝fd集合。这些操作都很消耗性能。\nepoll int sockfd = socket(AF_NET, SOCK_STREAM, 0); bind( ... ); listen( ... ); int epoll_fd = epoll_create1(0); // 添加fd epoll_ctl(epoll_fd, ...); while (1) { int n = epoll_wait( ... ); for ( ... ) { // 有事件的fd } } epoll不再使用线性的存储结构，改用红黑树（一种自平衡二叉树），增删改的时间复杂度一般为O(log n)。\nepoll内部维护了一个就绪fd链表，每次epoll_wait只需要处理链表，然后把所有就绪fd拷贝到用户空间。\nepoll不适用轮询，而是事件驱动。\nepoll有两种触发模式，ET（边缘触发，select/poll不支持）和LT（水平触发），区别主要体现在读上。\nLT模式下，只要可读（socket读缓冲区中有数据），就会触发事件，直到缓冲区被读完。\nET模式下，仅当数据到来时（缓冲区数据从无到有）触发一次事件，后续将不再触发，即使缓冲区还有数据。\nLT一般搭配阻塞读写，ET一般搭配非阻塞读写。\n",
+  "wordCount" : "55",
+  "inLanguage": "en",
+  "datePublished": "2025-08-21T01:07:55+08:00",
+  "dateModified": "2025-08-21T01:07:55+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Caelum's Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://decglu.top/favicon.ico"
+    }
+  }
+}
 </script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
+            <a href="https://decglu.top/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -201,7 +286,7 @@ LT一般搭配阻塞读写，ET一般搭配非阻塞读写。">
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Caelum&#39;s Site</a></span> · 
+        <span>&copy; 2026 <a href="https://decglu.top/">Caelum&#39;s Site</a></span> · 
 
     <span>
         Powered by

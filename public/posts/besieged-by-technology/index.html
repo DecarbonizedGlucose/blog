@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>技术围城 | Caelum&#39;s Site</title>
 <meta name="keywords" content="">
 <meta name="description" content="我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。
@@ -20,16 +20,16 @@
 后来做 C 语言课设，一个学生管理系统，没有数据库，没有网络，也没有前后端。我偏要认真做。回调函数、函数指针解耦、三层架构分离，连文件格式都自己设计，当时觉得自己写得高端大气。无 AI 添加纯手搓。
 洋洋洒洒两千多行，却 0人在意我写了什么。">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/besieged-by-technology/">
+<link rel="canonical" href="https://decglu.top/posts/besieged-by-technology/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css" integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://decglu.top/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://decglu.top/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://decglu.top/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://decglu.top/apple-touch-icon.png">
+<link rel="mask-icon" href="https://decglu.top/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/besieged-by-technology/">
+<link rel="alternate" hreflang="en" href="https://decglu.top/posts/besieged-by-technology/">
 <noscript>
     <style>
         #theme-toggle,
@@ -81,13 +81,98 @@
         document.querySelector("html").dataset.theme = 'light';
     }
 
+</script><meta property="og:url" content="https://decglu.top/posts/besieged-by-technology/">
+  <meta property="og:site_name" content="Caelum&#39;s Site">
+  <meta property="og:title" content="技术围城">
+  <meta property="og:description" content="我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。
+我到底在找什么？我想自由地创作，亲手搭出点东西。那股劲还在，却找不到地方使。或许，是我对技术最原始的热情又醒了。或许，我该做一个自己的开源项目。别再是什么分布式系统、数据库、Agent 插件了。就做一个我自己感兴趣的东西，不依靠 Coding Agent，自己把它做出来。
+我曾经想过自己做游戏。六年前，因为疫情居家，开始长时间接触电脑，那时候刚学 Python。我照着书里已经过时的 Pygame API，一边百度，一边翻 CSDN，做过一个很简陋的飞机大战。
+同一个暑假，我用三百多行 Python 加上 EasyGUI，写了一个简陋得要命的笔记系统，定位有点像 Obsidian，实际上难用得很。不知道什么时候该封装函数，那干脆不封装。全程 if-else，重复代码铺满屏幕。我还用 Tkinter 帮老师做过一个随机点名器，服役了一年；又写过一个丑得不行的、类似 GeoGebra 的东西，不能平移，不能缩放，只能画一次函数和二次函数的图像，连线都画不连续。
+上高中前，抓着最后那点自由的时间，我花了一周做了个带杰哥、阿伟 cosplay 音效的井字棋，Bug 连连。高中暑假忙里偷闲，买来一个二手树莓派和一些小外设，尝试用 Python 还原 Phigros。我甚至想参与 Phigros 的社区复刻项目 Phira 的开发，却发现，我对软件设计一无所知，不知道什么 Git 版本控制，协作流程，甚至连个 GitHub 账号都没有。
+那些作品里，只有井字棋留下过可执行文件。后来，那个 32GB 的 U 盘坏了，它和前面几个项目的代码一起，都成了不可溯源之物了。
+那时候做的东西，拿今天的眼光看，没几个像样的。可我真的很快乐。
+上一次有这样的热情，是在将近两年前。大一上学期，我凭着记忆，翻着那本 2020 年买来的破烂 Python 书，在 CSDN 上硬搜，对着笨重的 Visual Studio，用八百行 Python 做了一个三阶魔方模拟器。没用 AI——那时我没有科学上网手段，也不会用 AI。
+借助 Pygame、Tkinter 和 kociemba，它能变色，能打乱，能计时，有键位，能自动复原，能生成当前状态解法。八百行全塞在一个文件里，坐标全靠硬编码，屎山一座。但它真的跑起来了。那是我一点一点写出来的，它真的能转，真的能还原。
+我拿着这东西去参加学校的程序设计比赛，到了答辩现场才发现，我看漏了文件，这设计主题是 AI。真他妈荒唐。可至少，做它的时候，我没为了任何人。我就是觉得好玩。
+后来做 C 语言课设，一个学生管理系统，没有数据库，没有网络，也没有前后端。我偏要认真做。回调函数、函数指针解耦、三层架构分离，连文件格式都自己设计，当时觉得自己写得高端大气。无 AI 添加纯手搓。
+洋洋洒洒两千多行，却 0人在意我写了什么。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-09-07T02:01:10+08:00">
+    <meta property="article:modified_time" content="2026-09-07T02:01:10+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="技术围城">
+  <meta name="twitter:description" content="我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。
+我到底在找什么？我想自由地创作，亲手搭出点东西。那股劲还在，却找不到地方使。或许，是我对技术最原始的热情又醒了。或许，我该做一个自己的开源项目。别再是什么分布式系统、数据库、Agent 插件了。就做一个我自己感兴趣的东西，不依靠 Coding Agent，自己把它做出来。
+我曾经想过自己做游戏。六年前，因为疫情居家，开始长时间接触电脑，那时候刚学 Python。我照着书里已经过时的 Pygame API，一边百度，一边翻 CSDN，做过一个很简陋的飞机大战。
+同一个暑假，我用三百多行 Python 加上 EasyGUI，写了一个简陋得要命的笔记系统，定位有点像 Obsidian，实际上难用得很。不知道什么时候该封装函数，那干脆不封装。全程 if-else，重复代码铺满屏幕。我还用 Tkinter 帮老师做过一个随机点名器，服役了一年；又写过一个丑得不行的、类似 GeoGebra 的东西，不能平移，不能缩放，只能画一次函数和二次函数的图像，连线都画不连续。
+上高中前，抓着最后那点自由的时间，我花了一周做了个带杰哥、阿伟 cosplay 音效的井字棋，Bug 连连。高中暑假忙里偷闲，买来一个二手树莓派和一些小外设，尝试用 Python 还原 Phigros。我甚至想参与 Phigros 的社区复刻项目 Phira 的开发，却发现，我对软件设计一无所知，不知道什么 Git 版本控制，协作流程，甚至连个 GitHub 账号都没有。
+那些作品里，只有井字棋留下过可执行文件。后来，那个 32GB 的 U 盘坏了，它和前面几个项目的代码一起，都成了不可溯源之物了。
+那时候做的东西，拿今天的眼光看，没几个像样的。可我真的很快乐。
+上一次有这样的热情，是在将近两年前。大一上学期，我凭着记忆，翻着那本 2020 年买来的破烂 Python 书，在 CSDN 上硬搜，对着笨重的 Visual Studio，用八百行 Python 做了一个三阶魔方模拟器。没用 AI——那时我没有科学上网手段，也不会用 AI。
+借助 Pygame、Tkinter 和 kociemba，它能变色，能打乱，能计时，有键位，能自动复原，能生成当前状态解法。八百行全塞在一个文件里，坐标全靠硬编码，屎山一座。但它真的跑起来了。那是我一点一点写出来的，它真的能转，真的能还原。
+我拿着这东西去参加学校的程序设计比赛，到了答辩现场才发现，我看漏了文件，这设计主题是 AI。真他妈荒唐。可至少，做它的时候，我没为了任何人。我就是觉得好玩。
+后来做 C 语言课设，一个学生管理系统，没有数据库，没有网络，也没有前后端。我偏要认真做。回调函数、函数指针解耦、三层架构分离，连文件格式都自己设计，当时觉得自己写得高端大气。无 AI 添加纯手搓。
+洋洋洒洒两千多行，却 0人在意我写了什么。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://decglu.top/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术围城",
+      "item": "https://decglu.top/posts/besieged-by-technology/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "技术围城",
+  "name": "技术围城",
+  "description": "我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。\n我到底在找什么？我想自由地创作，亲手搭出点东西。那股劲还在，却找不到地方使。或许，是我对技术最原始的热情又醒了。或许，我该做一个自己的开源项目。别再是什么分布式系统、数据库、Agent 插件了。就做一个我自己感兴趣的东西，不依靠 Coding Agent，自己把它做出来。\n我曾经想过自己做游戏。六年前，因为疫情居家，开始长时间接触电脑，那时候刚学 Python。我照着书里已经过时的 Pygame API，一边百度，一边翻 CSDN，做过一个很简陋的飞机大战。\n同一个暑假，我用三百多行 Python 加上 EasyGUI，写了一个简陋得要命的笔记系统，定位有点像 Obsidian，实际上难用得很。不知道什么时候该封装函数，那干脆不封装。全程 if-else，重复代码铺满屏幕。我还用 Tkinter 帮老师做过一个随机点名器，服役了一年；又写过一个丑得不行的、类似 GeoGebra 的东西，不能平移，不能缩放，只能画一次函数和二次函数的图像，连线都画不连续。\n上高中前，抓着最后那点自由的时间，我花了一周做了个带杰哥、阿伟 cosplay 音效的井字棋，Bug 连连。高中暑假忙里偷闲，买来一个二手树莓派和一些小外设，尝试用 Python 还原 Phigros。我甚至想参与 Phigros 的社区复刻项目 Phira 的开发，却发现，我对软件设计一无所知，不知道什么 Git 版本控制，协作流程，甚至连个 GitHub 账号都没有。\n那些作品里，只有井字棋留下过可执行文件。后来，那个 32GB 的 U 盘坏了，它和前面几个项目的代码一起，都成了不可溯源之物了。\n那时候做的东西，拿今天的眼光看，没几个像样的。可我真的很快乐。\n上一次有这样的热情，是在将近两年前。大一上学期，我凭着记忆，翻着那本 2020 年买来的破烂 Python 书，在 CSDN 上硬搜，对着笨重的 Visual Studio，用八百行 Python 做了一个三阶魔方模拟器。没用 AI——那时我没有科学上网手段，也不会用 AI。\n借助 Pygame、Tkinter 和 kociemba，它能变色，能打乱，能计时，有键位，能自动复原，能生成当前状态解法。八百行全塞在一个文件里，坐标全靠硬编码，屎山一座。但它真的跑起来了。那是我一点一点写出来的，它真的能转，真的能还原。\n我拿着这东西去参加学校的程序设计比赛，到了答辩现场才发现，我看漏了文件，这设计主题是 AI。真他妈荒唐。可至少，做它的时候，我没为了任何人。我就是觉得好玩。\n后来做 C 语言课设，一个学生管理系统，没有数据库，没有网络，也没有前后端。我偏要认真做。回调函数、函数指针解耦、三层架构分离，连文件格式都自己设计，当时觉得自己写得高端大气。无 AI 添加纯手搓。\n洋洋洒洒两千多行，却 0人在意我写了什么。\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。\n我到底在找什么？我想自由地创作，亲手搭出点东西。那股劲还在，却找不到地方使。或许，是我对技术最原始的热情又醒了。或许，我该做一个自己的开源项目。别再是什么分布式系统、数据库、Agent 插件了。就做一个我自己感兴趣的东西，不依靠 Coding Agent，自己把它做出来。\n我曾经想过自己做游戏。六年前，因为疫情居家，开始长时间接触电脑，那时候刚学 Python。我照着书里已经过时的 Pygame API，一边百度，一边翻 CSDN，做过一个很简陋的飞机大战。\n同一个暑假，我用三百多行 Python 加上 EasyGUI，写了一个简陋得要命的笔记系统，定位有点像 Obsidian，实际上难用得很。不知道什么时候该封装函数，那干脆不封装。全程 if-else，重复代码铺满屏幕。我还用 Tkinter 帮老师做过一个随机点名器，服役了一年；又写过一个丑得不行的、类似 GeoGebra 的东西，不能平移，不能缩放，只能画一次函数和二次函数的图像，连线都画不连续。\n上高中前，抓着最后那点自由的时间，我花了一周做了个带杰哥、阿伟 cosplay 音效的井字棋，Bug 连连。高中暑假忙里偷闲，买来一个二手树莓派和一些小外设，尝试用 Python 还原 Phigros。我甚至想参与 Phigros 的社区复刻项目 Phira 的开发，却发现，我对软件设计一无所知，不知道什么 Git 版本控制，协作流程，甚至连个 GitHub 账号都没有。\n那些作品里，只有井字棋留下过可执行文件。后来，那个 32GB 的 U 盘坏了，它和前面几个项目的代码一起，都成了不可溯源之物了。\n那时候做的东西，拿今天的眼光看，没几个像样的。可我真的很快乐。\n上一次有这样的热情，是在将近两年前。大一上学期，我凭着记忆，翻着那本 2020 年买来的破烂 Python 书，在 CSDN 上硬搜，对着笨重的 Visual Studio，用八百行 Python 做了一个三阶魔方模拟器。没用 AI——那时我没有科学上网手段，也不会用 AI。\n借助 Pygame、Tkinter 和 kociemba，它能变色，能打乱，能计时，有键位，能自动复原，能生成当前状态解法。八百行全塞在一个文件里，坐标全靠硬编码，屎山一座。但它真的跑起来了。那是我一点一点写出来的，它真的能转，真的能还原。\n我拿着这东西去参加学校的程序设计比赛，到了答辩现场才发现，我看漏了文件，这设计主题是 AI。真他妈荒唐。可至少，做它的时候，我没为了任何人。我就是觉得好玩。\n后来做 C 语言课设，一个学生管理系统，没有数据库，没有网络，也没有前后端。我偏要认真做。回调函数、函数指针解耦、三层架构分离，连文件格式都自己设计，当时觉得自己写得高端大气。无 AI 添加纯手搓。\n洋洋洒洒两千多行，却 0人在意我写了什么。\n他们只在意任务做完没有。你怎么设计，为什么这么设计，花了多少心思，没人在乎。旁边有人用了 AI 辅助，东西照样做得粗制滥造，最后分数跟我一样。我就是觉得不合理。我认真做的那些东西，在这套评分里，就一点区别都没有吗？\n这次我是在为别人写代码。我把热情交了出去，等着有人看见，却没人看见。这是我第一次热情受到打击。\n如今，会实现 Raft 了，会做软件设计了，懂系统和网络怎么运作了，会用 Linux 了。然后呢？我没有多快乐。技术越学越多，能让我兴奋的东西却越来越少。项目做了一个又一个，最后全成了简历上的几行字，求职时的谈资，下一步的跳板。我能讲清它们用了什么技术、解决了什么问题，却说不出自己到底有多想做它们。\n所有权属于我，却不属于我的精神世界。它们可以证明我能干活，可我看着它们，找不到自己。\n再看看周围，AI 大狂欢，Vibe Coding，许多人疯狂地往外倒屎代码。我不反对 Vibe Coding。我自己当年写的也是屎山，没什么资格拿代码质量装清高。但你的想法呢？这里面到底有多少东西，是你自己想做的？\n你可以不懂软件，不懂工程细节，把你的想法、设计、原型交给 AI 实现。可你不能连自己想要什么都不知道，就等着它替你决定。设计是它给的，细节是它定的，漏洞也是它埋的，最后你接过来：这是我的作品。\n你的东西到底在哪？连想法都让出去了，还剩什么？这不只是懒得思考。连原本属于你自己的思想，都快被挤没了。\n我想找回那份热情，真的想。与技术深度无关，与手段无关。我就想亲手设计一个东西，知道它为什么长这样，为什么这样运转，哪怕做得稀烂，也是我自己的决定。孩子手里的积木，为什么非得让机器人替他放？连这一块积木都不让我自己搭，搭得再漂亮，我又能有多快乐？\n可我不知道该怎么办。以前连函数都不会封装，想做什么就敢做。现在懂了这么多，却连自己想做什么都找不到了。我像是终于翻过了技术这座围城的城墙，回头才发现，创作的快乐被我留在了外面。这城墙，正是这张录取通知书。外面的我想提升技术，里面的我想自由创作。我的灵魂，我活生生的人，被从中间劈开了。一边是做得稀烂却快乐的我，一边是越来越像样、却越来越空的我。但是这其中一半，却对另一半的感受越来越模糊了呢。\n我要找回我的精神世界，找回另一半真实的我。我可以不完美，但我想做一个完整的人。\n",
+  "wordCount" : "93",
+  "inLanguage": "en",
+  "datePublished": "2026-09-07T02:01:10+08:00",
+  "dateModified": "2026-09-07T02:01:10+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://decglu.top/posts/besieged-by-technology/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Caelum's Site",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://decglu.top/favicon.ico"
+    }
+  }
+}
 </script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
+            <a href="https://decglu.top/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -139,16 +224,15 @@
 <p>我拿着这东西去参加学校的程序设计比赛，到了答辩现场才发现，我看漏了文件，这设计主题是 AI。真他妈荒唐。可至少，做它的时候，我没为了任何人。我就是觉得好玩。</p>
 <p>后来做 C 语言课设，一个学生管理系统，没有数据库，没有网络，也没有前后端。我偏要认真做。回调函数、函数指针解耦、三层架构分离，连文件格式都自己设计，当时觉得自己写得高端大气。无 AI 添加纯手搓。</p>
 <p>洋洋洒洒两千多行，却 0人在意我写了什么。</p>
-<p>他们只在意任务做完没有。你怎么设计，为什么这么设计，花了多少心思，没人在乎。旁边有人用了 AI 辅助，东西照样做得粗制滥造，最后分数跟我一样。我就是觉得不合理。我认真做的那些东西，在这套评分里，连一点区别都换不来。</p>
-<p>这次我是在为别人写代码。我把热情交了出去，等着有人看见，结果根本没人在看。</p>
-<p>这是我第一次热情受到打击。</p>
+<p>他们只在意任务做完没有。你怎么设计，为什么这么设计，花了多少心思，没人在乎。旁边有人用了 AI 辅助，东西照样做得粗制滥造，最后分数跟我一样。我就是觉得不合理。我认真做的那些东西，在这套评分里，就一点区别都没有吗？</p>
+<p>这次我是在为别人写代码。我把热情交了出去，等着有人看见，却没人看见。这是我第一次热情受到打击。</p>
 <p>如今，会实现 Raft 了，会做软件设计了，懂系统和网络怎么运作了，会用 Linux 了。然后呢？我没有多快乐。技术越学越多，能让我兴奋的东西却越来越少。项目做了一个又一个，最后全成了简历上的几行字，求职时的谈资，下一步的跳板。我能讲清它们用了什么技术、解决了什么问题，却说不出自己到底有多想做它们。</p>
 <p>所有权属于我，却不属于我的精神世界。它们可以证明我能干活，可我看着它们，找不到自己。</p>
 <p>再看看周围，AI 大狂欢，Vibe Coding，许多人疯狂地往外倒屎代码。我不反对 Vibe Coding。我自己当年写的也是屎山，没什么资格拿代码质量装清高。但你的想法呢？这里面到底有多少东西，是你自己想做的？</p>
 <p>你可以不懂软件，不懂工程细节，把你的想法、设计、原型交给 AI 实现。可你不能连自己想要什么都不知道，就等着它替你决定。设计是它给的，细节是它定的，漏洞也是它埋的，最后你接过来：这是我的作品。</p>
 <p>你的东西到底在哪？连想法都让出去了，还剩什么？这不只是懒得思考。连原本属于你自己的思想，都快被挤没了。</p>
 <p>我想找回那份热情，真的想。与技术深度无关，与手段无关。我就想亲手设计一个东西，知道它为什么长这样，为什么这样运转，哪怕做得稀烂，也是我自己的决定。孩子手里的积木，为什么非得让机器人替他放？连这一块积木都不让我自己搭，搭得再漂亮，我又能有多快乐？</p>
-<p>可我不知道该怎么办。以前连函数都不会封装，想做什么就敢做。现在懂了这么多，却连自己想做什么都找不到了。我像是终于翻过了技术这座围城的城墙，回头才发现，创作的快乐被我留在了外面。这又像是一种被技术束缚的创作乡愁。这城墙，这隔阂，正是这张录取通知书。我的灵魂，我活生生的人，被从中间劈开了。一边是做得稀烂却快乐的我，一边是越来越像样、却越来越空的我。但是这其中一半，却对另一半的感受越来越模糊了呢。</p>
+<p>可我不知道该怎么办。以前连函数都不会封装，想做什么就敢做。现在懂了这么多，却连自己想做什么都找不到了。我像是终于翻过了技术这座围城的城墙，回头才发现，创作的快乐被我留在了外面。这城墙，正是这张录取通知书。外面的我想提升技术，里面的我想自由创作。我的灵魂，我活生生的人，被从中间劈开了。一边是做得稀烂却快乐的我，一边是越来越像样、却越来越空的我。但是这其中一半，却对另一半的感受越来越模糊了呢。</p>
 <p>我要找回我的精神世界，找回另一半真实的我。我可以不完美，但我想做一个完整的人。</p>
 
 
@@ -162,7 +246,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Caelum&#39;s Site</a></span> · 
+        <span>&copy; 2026 <a href="https://decglu.top/">Caelum&#39;s Site</a></span> · 
 
     <span>
         Powered by
