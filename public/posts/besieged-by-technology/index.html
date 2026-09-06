@@ -21,7 +21,7 @@
 洋洋洒洒两千多行，却 0人在意我写了什么。">
 <meta name="author" content="">
 <link rel="canonical" href="https://decglu.top/posts/besieged-by-technology/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css" integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://decglu.top/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://decglu.top/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://decglu.top/favicon-32x32.png">
@@ -59,12 +59,6 @@
 
             .toc {
                 background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
             }
         }
 
@@ -170,17 +164,17 @@
 </head>
 <body id="top">
     <header class="header">
-    <nav class="nav">
+    <nav class="header-nav">
         <div class="logo">
             <a href="https://decglu.top/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -196,7 +190,7 @@
                 </button>
             </div>
         </div>
-        <ul id="menu">
+        <ul id="menu" class="menu">
         </ul>
     </nav>
 </header>
@@ -208,11 +202,13 @@
     <h1 class="post-title entry-hint-parent">
       技术围城
     </h1>
-    <div class="post-meta"><span title='2026-09-07 02:01:10 +0800 CST'>September 7, 2026</span>
+    <div class="post-meta">
+
+<span title='2026-09-07 02:01:10 +0800 CST'>September 7, 2026</span>
 
 </div>
   </header> 
-  <div class="post-content"><p>我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。</p>
+  <div class="post-content md-content"><p>我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。</p>
 <p>我到底在找什么？我想自由地创作，亲手搭出点东西。那股劲还在，却找不到地方使。或许，是我对技术最原始的热情又醒了。或许，我该做一个自己的开源项目。别再是什么分布式系统、数据库、Agent 插件了。就做一个我自己感兴趣的东西，不依靠 Coding Agent，自己把它做出来。</p>
 <p>我曾经想过自己做游戏。六年前，因为疫情居家，开始长时间接触电脑，那时候刚学 Python。我照着书里已经过时的 Pygame API，一边百度，一边翻 CSDN，做过一个很简陋的飞机大战。</p>
 <p>同一个暑假，我用三百多行 Python 加上 EasyGUI，写了一个简陋得要命的笔记系统，定位有点像 Obsidian，实际上难用得很。不知道什么时候该封装函数，那干脆不封装。全程 if-else，重复代码铺满屏幕。我还用 Tkinter 帮老师做过一个随机点名器，服役了一年；又写过一个丑得不行的、类似 GeoGebra 的东西，不能平移，不能缩放，只能画一次函数和二次函数的图像，连线都画不连续。</p>
@@ -248,15 +244,19 @@
 <footer class="footer">
         <span>&copy; 2026 <a href="https://decglu.top/">Caelum&#39;s Site</a></span> · 
 
+    
+    
     <span>
         Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
 
@@ -295,14 +295,13 @@
 
 </script>
 <script>
-    var mybutton = document.getElementById("top-link");
+    var toplink = document.getElementById("top-link");
     window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+            toplink.classList.add("hidden");
         }
     };
 

@@ -14,7 +14,7 @@
 本质上这是一种关注点分离在对话管理上的应用。AI 工具的上下文窗口是有限资源，像管理代码模块一样管理它，会顺手很多。">
 <meta name="author" content="">
 <link rel="canonical" href="https://decglu.top/posts/fishbone-chat/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css" integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://decglu.top/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://decglu.top/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://decglu.top/favicon-32x32.png">
@@ -52,12 +52,6 @@
 
             .toc {
                 background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
             }
         }
 
@@ -149,17 +143,17 @@
 </head>
 <body id="top">
     <header class="header">
-    <nav class="nav">
+    <nav class="header-nav">
         <div class="logo">
             <a href="https://decglu.top/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -175,7 +169,7 @@
                 </button>
             </div>
         </div>
-        <ul id="menu">
+        <ul id="menu" class="menu">
         </ul>
     </nav>
 </header>
@@ -187,11 +181,13 @@
     <h1 class="post-title entry-hint-parent">
       鱼骨chat法
     </h1>
-    <div class="post-meta"><span title='2026-05-24 17:43:41 +0800 CST'>May 24, 2026</span>
+    <div class="post-meta">
+
+<span title='2026-05-24 17:43:41 +0800 CST'>May 24, 2026</span>
 
 </div>
   </header> 
-  <div class="post-content"><p>用 AI 编程助手写代码，最让人头疼的问题之一是<strong>上下文污染</strong>——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。</p>
+  <div class="post-content md-content"><p>用 AI 编程助手写代码，最让人头疼的问题之一是<strong>上下文污染</strong>——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。</p>
 <p>我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。</p>
 <p>思路很简单：以鱼骨图为隐喻，<strong>主干是一个贯穿始终的主线 session</strong>，负责记录整体设计思路、模块划分和关键决策；<strong>每一根鱼刺是一个独立的子 session</strong>，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。</p>
 <p>这样做有几个好处：子 session 上下文干净，模型不会被无关信息干扰；主线 session 始终保持高层视角，不会因为陷入细节而失去方向；出问题时也方便定位，每个 session 职责单一，回溯很直观。</p>
@@ -210,15 +206,19 @@
 <footer class="footer">
         <span>&copy; 2026 <a href="https://decglu.top/">Caelum&#39;s Site</a></span> · 
 
+    
+    
     <span>
         Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
 
@@ -257,14 +257,13 @@
 
 </script>
 <script>
-    var mybutton = document.getElementById("top-link");
+    var toplink = document.getElementById("top-link");
     window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
         } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
+            toplink.classList.add("hidden");
         }
     };
 
