@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>鱼骨chat法 | Caelum&#39;s Site</title>
 <meta name="keywords" content="">
 <meta name="description" content="用 AI 编程助手写代码，最让人头疼的问题之一是上下文污染——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。
@@ -13,16 +13,16 @@
 这样做有几个好处：子 session 上下文干净，模型不会被无关信息干扰；主线 session 始终保持高层视角，不会因为陷入细节而失去方向；出问题时也方便定位，每个 session 职责单一，回溯很直观。
 本质上这是一种关注点分离在对话管理上的应用。AI 工具的上下文窗口是有限资源，像管理代码模块一样管理它，会顺手很多。">
 <meta name="author" content="">
-<link rel="canonical" href="https://decglu.top/posts/fishbone-chat/">
+<link rel="canonical" href="http://localhost:1313/posts/fishbone-chat/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css" integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://decglu.top/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://decglu.top/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://decglu.top/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://decglu.top/apple-touch-icon.png">
-<link rel="mask-icon" href="https://decglu.top/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://decglu.top/posts/fishbone-chat/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/fishbone-chat/">
 <noscript>
     <style>
         #theme-toggle,
@@ -74,84 +74,13 @@
         document.querySelector("html").dataset.theme = 'light';
     }
 
-</script><meta property="og:url" content="https://decglu.top/posts/fishbone-chat/">
-  <meta property="og:site_name" content="Caelum&#39;s Site">
-  <meta property="og:title" content="鱼骨chat法">
-  <meta property="og:description" content="用 AI 编程助手写代码，最让人头疼的问题之一是上下文污染——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。
-我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。
-思路很简单：以鱼骨图为隐喻，主干是一个贯穿始终的主线 session，负责记录整体设计思路、模块划分和关键决策；每一根鱼刺是一个独立的子 session，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。
-这样做有几个好处：子 session 上下文干净，模型不会被无关信息干扰；主线 session 始终保持高层视角，不会因为陷入细节而失去方向；出问题时也方便定位，每个 session 职责单一，回溯很直观。
-本质上这是一种关注点分离在对话管理上的应用。AI 工具的上下文窗口是有限资源，像管理代码模块一样管理它，会顺手很多。">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-05-24T17:43:41+08:00">
-    <meta property="article:modified_time" content="2026-05-24T17:43:41+08:00">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="鱼骨chat法">
-  <meta name="twitter:description" content="用 AI 编程助手写代码，最让人头疼的问题之一是上下文污染——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。
-我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。
-思路很简单：以鱼骨图为隐喻，主干是一个贯穿始终的主线 session，负责记录整体设计思路、模块划分和关键决策；每一根鱼刺是一个独立的子 session，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。
-这样做有几个好处：子 session 上下文干净，模型不会被无关信息干扰；主线 session 始终保持高层视角，不会因为陷入细节而失去方向；出问题时也方便定位，每个 session 职责单一，回溯很直观。
-本质上这是一种关注点分离在对话管理上的应用。AI 工具的上下文窗口是有限资源，像管理代码模块一样管理它，会顺手很多。">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://decglu.top/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "鱼骨chat法",
-      "item": "https://decglu.top/posts/fishbone-chat/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "鱼骨chat法",
-  "name": "鱼骨chat法",
-  "description": "用 AI 编程助手写代码，最让人头疼的问题之一是上下文污染——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。\n我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。\n思路很简单：以鱼骨图为隐喻，主干是一个贯穿始终的主线 session，负责记录整体设计思路、模块划分和关键决策；每一根鱼刺是一个独立的子 session，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。\n这样做有几个好处：子 session 上下文干净，模型不会被无关信息干扰；主线 session 始终保持高层视角，不会因为陷入细节而失去方向；出问题时也方便定位，每个 session 职责单一，回溯很直观。\n本质上这是一种关注点分离在对话管理上的应用。AI 工具的上下文窗口是有限资源，像管理代码模块一样管理它，会顺手很多。\n",
-  "keywords": [
-    
-  ],
-  "articleBody": "用 AI 编程助手写代码，最让人头疼的问题之一是上下文污染——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。\n我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。\n思路很简单：以鱼骨图为隐喻，主干是一个贯穿始终的主线 session，负责记录整体设计思路、模块划分和关键决策；每一根鱼刺是一个独立的子 session，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。\n这样做有几个好处：子 session 上下文干净，模型不会被无关信息干扰；主线 session 始终保持高层视角，不会因为陷入细节而失去方向；出问题时也方便定位，每个 session 职责单一，回溯很直观。\n本质上这是一种关注点分离在对话管理上的应用。AI 工具的上下文窗口是有限资源，像管理代码模块一样管理它，会顺手很多。\n",
-  "wordCount" : "20",
-  "inLanguage": "en",
-  "datePublished": "2026-05-24T17:43:41+08:00",
-  "dateModified": "2026-05-24T17:43:41+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://decglu.top/posts/fishbone-chat/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Caelum's Site",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://decglu.top/favicon.ico"
-    }
-  }
-}
 </script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://decglu.top/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
+            <a href="http://localhost:1313/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -208,7 +137,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="https://decglu.top/">Caelum&#39;s Site</a></span> · 
+        <span>&copy; 2026 <a href="http://localhost:1313/">Caelum&#39;s Site</a></span> · 
 
     <span>
         Powered by

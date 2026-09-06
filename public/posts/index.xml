@@ -2,17 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Caelum&#39;s Site</title>
-    <link>https://decglu.top/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Caelum&#39;s Site</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 08 Aug 2026 04:45:34 +0800</lastBuildDate>
-    <atom:link href="https://decglu.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Sep 2026 02:01:10 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术围城</title>
+      <link>http://localhost:1313/posts/besieged-by-technology/</link>
+      <pubDate>Mon, 07 Sep 2026 02:01:10 +0800</pubDate>
+      <guid>http://localhost:1313/posts/besieged-by-technology/</guid>
+      <description>&lt;p&gt;我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。&lt;/p&gt;
+&lt;p&gt;我到底在找什么？我想自由地创作，亲手搭出点东西。那股劲还在，却找不到地方使。或许，是我对技术最原始的热情又醒了。或许，我该做一个自己的开源项目。别再是什么分布式系统、数据库、Agent 插件了。就做一个我自己感兴趣的东西，不依靠 Coding Agent，自己把它做出来。&lt;/p&gt;
+&lt;p&gt;我曾经想过自己做游戏。六年前，因为疫情居家，开始长时间接触电脑，那时候刚学 Python。我照着书里已经过时的 Pygame API，一边百度，一边翻 CSDN，做过一个很简陋的飞机大战。&lt;/p&gt;
+&lt;p&gt;同一个暑假，我用三百多行 Python 加上 EasyGUI，写了一个简陋得要命的笔记系统，定位有点像 Obsidian，实际上难用得很。不知道什么时候该封装函数，那干脆不封装。全程 if-else，重复代码铺满屏幕。我还用 Tkinter 帮老师做过一个随机点名器，服役了一年；又写过一个丑得不行的、类似 GeoGebra 的东西，不能平移，不能缩放，只能画一次函数和二次函数的图像，连线都画不连续。&lt;/p&gt;
+&lt;p&gt;上高中前，抓着最后那点自由的时间，我花了一周做了个带杰哥、阿伟 cosplay 音效的井字棋，Bug 连连。高中暑假忙里偷闲，买来一个二手树莓派和一些小外设，尝试用 Python 还原 Phigros。我甚至想参与 Phigros 的社区复刻项目 Phira 的开发，却发现，我对软件设计一无所知，不知道什么 Git 版本控制，协作流程，甚至连个 GitHub 账号都没有。&lt;/p&gt;
+&lt;p&gt;那些作品里，只有井字棋留下过可执行文件。后来，那个 32GB 的 U 盘坏了，它和前面几个项目的代码一起，都成了不可溯源之物了。&lt;/p&gt;
+&lt;p&gt;那时候做的东西，拿今天的眼光看，没几个像样的。可我真的很快乐。&lt;/p&gt;
+&lt;p&gt;上一次有这样的热情，是在将近两年前。大一上学期，我凭着记忆，翻着那本 2020 年买来的破烂 Python 书，在 CSDN 上硬搜，对着笨重的 Visual Studio，用八百行 Python 做了一个三阶魔方模拟器。没用 AI——那时我没有科学上网手段，也不会用 AI。&lt;/p&gt;
+&lt;p&gt;借助 Pygame、Tkinter 和 kociemba，它能变色，能打乱，能计时，有键位，能自动复原，能生成当前状态解法。八百行全塞在一个文件里，坐标全靠硬编码，屎山一座。但它真的跑起来了。那是我一点一点写出来的，它真的能转，真的能还原。&lt;/p&gt;
+&lt;p&gt;我拿着这东西去参加学校的程序设计比赛，到了答辩现场才发现，我看漏了文件，这设计主题是 AI。真他妈荒唐。可至少，做它的时候，我没为了任何人。我就是觉得好玩。&lt;/p&gt;
+&lt;p&gt;后来做 C 语言课设，一个学生管理系统，没有数据库，没有网络，也没有前后端。我偏要认真做。回调函数、函数指针解耦、三层架构分离，连文件格式都自己设计，当时觉得自己写得高端大气。无 AI 添加纯手搓。&lt;/p&gt;
+&lt;p&gt;洋洋洒洒两千多行，却 0人在意我写了什么。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>AI时代的知识奶头乐</title>
-      <link>https://decglu.top/posts/cognitive-tittytainment/</link>
+      <link>http://localhost:1313/posts/cognitive-tittytainment/</link>
       <pubDate>Sat, 08 Aug 2026 04:45:34 +0800</pubDate>
-      <guid>https://decglu.top/posts/cognitive-tittytainment/</guid>
+      <guid>http://localhost:1313/posts/cognitive-tittytainment/</guid>
       <description>&lt;p&gt;我越来越担心一件事：AI正在悄悄改变我&amp;quot;学习&amp;quot;这个动作的形状。&lt;/p&gt;
 &lt;p&gt;以前想弄懂一个复杂问题，得自己去啃、去查、去碰壁，那种摩擦感——查资料的辛苦、想不通的卡顿——恰恰是深度理解得以发生的地方。现在这层摩擦几乎被抹平了。同时被削弱的还有学习到新知的正向反馈。问AI，答案立刻就来，流畅、自信、结构完整。AI时代提供给了我们“知识奶头乐”。它太方便了，方便到我开始怀疑：我是不是正在失去那种&amp;quot;自己动手够到知识&amp;quot;的原始热情？&lt;/p&gt;
 &lt;p&gt;AI本身也不是个省油的灯，它给出的答案本质上是概率模型的产物——是&amp;quot;平均的&amp;quot;、&amp;ldquo;大概的&amp;rdquo;、某个视角下的拼凑，甚至可能根本不是事实。但它说话的语气太笃定了，笃定到你根本不会去追问。它还会让你自信心满满，&amp;ldquo;You&amp;rsquo;re absolutely right!&amp;quot;，而可能根本不会意识到你观点的缺陷。这就像一个谀臣，无形中害了你。&lt;/p&gt;
@@ -22,9 +40,9 @@
     </item>
     <item>
       <title>鱼骨chat法</title>
-      <link>https://decglu.top/posts/fishbone-chat/</link>
+      <link>http://localhost:1313/posts/fishbone-chat/</link>
       <pubDate>Sun, 24 May 2026 17:43:41 +0800</pubDate>
-      <guid>https://decglu.top/posts/fishbone-chat/</guid>
+      <guid>http://localhost:1313/posts/fishbone-chat/</guid>
       <description>&lt;p&gt;用 AI 编程助手写代码，最让人头疼的问题之一是&lt;strong&gt;上下文污染&lt;/strong&gt;——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。&lt;/p&gt;
 &lt;p&gt;我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。&lt;/p&gt;
 &lt;p&gt;思路很简单：以鱼骨图为隐喻，&lt;strong&gt;主干是一个贯穿始终的主线 session&lt;/strong&gt;，负责记录整体设计思路、模块划分和关键决策；&lt;strong&gt;每一根鱼刺是一个独立的子 session&lt;/strong&gt;，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。&lt;/p&gt;
@@ -33,9 +51,9 @@
     </item>
     <item>
       <title>黄山奇石</title>
-      <link>https://decglu.top/posts/huangshan-strange-rock/</link>
+      <link>http://localhost:1313/posts/huangshan-strange-rock/</link>
       <pubDate>Fri, 10 Apr 2026 23:46:08 +0800</pubDate>
-      <guid>https://decglu.top/posts/huangshan-strange-rock/</guid>
+      <guid>http://localhost:1313/posts/huangshan-strange-rock/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;vibe coding 派还在 code&lt;/li&gt;
 &lt;li&gt;你说什么？&lt;/li&gt;
@@ -46,9 +64,9 @@
     </item>
     <item>
       <title>分布式系统一致性</title>
-      <link>https://decglu.top/posts/distributed-system-consistency/</link>
+      <link>http://localhost:1313/posts/distributed-system-consistency/</link>
       <pubDate>Tue, 24 Feb 2026 22:20:41 +0800</pubDate>
-      <guid>https://decglu.top/posts/distributed-system-consistency/</guid>
+      <guid>http://localhost:1313/posts/distributed-system-consistency/</guid>
       <description>&lt;p&gt;在分布式系统中，一致性模型定义了多节点间数据更新的可见顺序与实时性，是权衡性能、可用性和正确性的核心。四个经典模型从强到弱依次为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -91,9 +109,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>Linux C/C&#43;&#43; IO多路复用</title>
-      <link>https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/</link>
+      <link>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</link>
       <pubDate>Thu, 21 Aug 2025 01:07:55 +0800</pubDate>
-      <guid>https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/</guid>
+      <guid>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</guid>
       <description>&lt;p&gt;在linux服务器编写中，为每个连接单独开一个进程/线程不现实，&lt;/p&gt;
 &lt;p&gt;我们采用io多路复用。&lt;/p&gt;
 &lt;h2 id=&#34;基本tcp-socket模型&#34;&gt;基本TCP socket模型&lt;/h2&gt;
@@ -134,9 +152,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>零拷贝技术</title>
-      <link>https://decglu.top/posts/zero-copy-tech/</link>
+      <link>http://localhost:1313/posts/zero-copy-tech/</link>
       <pubDate>Thu, 21 Aug 2025 01:07:12 +0800</pubDate>
-      <guid>https://decglu.top/posts/zero-copy-tech/</guid>
+      <guid>http://localhost:1313/posts/zero-copy-tech/</guid>
       <description>&lt;h2 id=&#34;什么是零拷贝&#34;&gt;什么是零拷贝？&lt;/h2&gt;
 &lt;p&gt;利用直接内存访问（Direct Memory Access，DMA），消除数据在内存中不必要的拷贝，即零拷贝技术（Zero-Copy）。&lt;/p&gt;
 &lt;p&gt;零拷贝不是没有任何复制，而是消除了消耗CPU和内存带宽的不必要的冗余复制。&lt;/p&gt;
@@ -186,9 +204,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>SQL和数据库管理系统（MySQL）</title>
-      <link>https://decglu.top/posts/sql-and-db-management-system-mysql/</link>
+      <link>http://localhost:1313/posts/sql-and-db-management-system-mysql/</link>
       <pubDate>Sat, 02 Aug 2025 15:46:23 +0800</pubDate>
-      <guid>https://decglu.top/posts/sql-and-db-management-system-mysql/</guid>
+      <guid>http://localhost:1313/posts/sql-and-db-management-system-mysql/</guid>
       <description>&lt;h2 id=&#34;为什么需要数据库&#34;&gt;为什么需要数据库？&lt;/h2&gt;
 &lt;p&gt;数据太多，文件搞不定。&lt;/p&gt;
 &lt;ul&gt;
