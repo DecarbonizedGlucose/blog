@@ -2,17 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Caelum&#39;s Site</title>
-    <link>https://decglu.top/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Caelum&#39;s Site</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 07 Sep 2026 02:01:10 +0800</lastBuildDate>
-    <atom:link href="https://decglu.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Nov 2026 00:56:24 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自适应 Agent Runtime</title>
+      <link>http://localhost:1313/posts/self-evolving-agent-runtime/</link>
+      <pubDate>Sat, 07 Nov 2026 00:56:24 +0800</pubDate>
+      <guid>http://localhost:1313/posts/self-evolving-agent-runtime/</guid>
+      <description>&lt;p&gt;最近俩月没找到实习，挺郁闷的。没有面试，又不想闲着，于是跟风，养了一只“蓝色大肥鱼”。&lt;/p&gt;
+&lt;h2 id=&#34;蓝色大肥鱼的启蒙&#34;&gt;“蓝色大肥鱼”的启蒙&lt;/h2&gt;
+&lt;p&gt;QQ 交流群里有各种人格提示词，傲娇版、妹妹版、女友版、妈妈版、贴吧嘴臭版，甚至……常凯申版？ 无一例外，这些提示词中充满了明显的外行行为，大概分为这么几类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;要求按概率触发，但没有调度&lt;/li&gt;
+&lt;li&gt;反向提示词 / 补丁套补丁&lt;/li&gt;
+&lt;li&gt;示例污染 / 复读机&lt;/li&gt;
+&lt;li&gt;规则打架 / 篇幅失控&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;摸索着用 docker 部署 AstrBot，接进 IM，再配置点人格和规则就完了。就这么用，我一开始也没有意识到问题的严重性，直到我连续几天都在用 AI 调节提示词但效果欠佳时，我才猜到可能是上下文问题。&lt;/p&gt;
+&lt;p&gt;我只要问鱼在干什么，鱼大概率在躺着，吃白米饭，等着我给她做白米饭，发呆……几乎就是提示词报菜名了。&lt;/p&gt;
+&lt;p&gt;同一套人格提示词，多个会话中均表现出回复风格越来越同质化，逐渐收敛（数学意义上的？），且情绪等状态因素影响变小，但会话间的收敛点还不同。有时会收敛到一个很奇怪的点，每次末尾都带上 &amp;ldquo;write. done.&amp;quot;，我在会话中要求不要输出那个，但无济于事。&lt;/p&gt;
+&lt;p&gt;我受不了了，这玩意越聊越像人机。没有各种插件的话，她什么都做不了，甚至不能主动发消息，纯粹事件驱动的东西。&lt;/p&gt;
+&lt;h2 id=&#34;深入探究-agent&#34;&gt;深入探究 Agent&lt;/h2&gt;
+&lt;p&gt;既然没事做，干脆在 AI 领域再深造一下，就去看了很新的课 CMU 11-768: AI Agents。看到 Lecture 3: Long Context，字面意思，是关于长上下文 Agent 的上下文管理，前面讲了一大堆在模型层提升 Agent 进行长上下文任务能力的工程架构问题，缺乏前置知识，我没仔细看。不过剩下的部分看下来，大概就是：&lt;/p&gt;
+&lt;p&gt;好的压缩就是构造一个适合继续行动的状态，不是简单的缩写历史。&lt;/p&gt;
+&lt;p&gt;但是 Harness 就一坨代码，它怎么知道哪些细节应该留着呢？&lt;/p&gt;
+&lt;h2 id=&#34;状态机&#34;&gt;状态机&lt;/h2&gt;
+&lt;p&gt;突然想到 Vedal 做的 Neuro-sama，那玩意不就是 LLM 驱动的吗？她为什么那么有活人感呢？Neuro 似乎是被一个经微调的 LLM 驱动，说话方式被刻在权重里了。上面一大批提示词暴露的问题，这个解决了一半，那剩下的呢？&lt;/p&gt;
+&lt;p&gt;我来构想一种架构。&lt;/p&gt;
+&lt;p&gt;他们试图把 LLM 无法左右的事情交给 LLM。LLM 调用是无状态的，但他们试图描述一个有条件的状态机，那么这件事不如交给 Runtime。&lt;/p&gt;
+&lt;p&gt;我这里把维护 Agent 持久状态、事件调度与执行规则的运行层，称为 Agent Runtime。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>技术围城</title>
-      <link>https://decglu.top/posts/besieged-by-technology/</link>
+      <link>http://localhost:1313/posts/besieged-by-technology/</link>
       <pubDate>Mon, 07 Sep 2026 02:01:10 +0800</pubDate>
-      <guid>https://decglu.top/posts/besieged-by-technology/</guid>
+      <guid>http://localhost:1313/posts/besieged-by-technology/</guid>
       <description>&lt;p&gt;我老想找些自由度高的游戏来玩，比如 Minecraft，但找来找去，就是找不到合适的。Minecraft 还在更新，可微软现在端出来的东西，在我这样的老玩家眼里就是敷衍。我们这一代老玩家也长大了，热情耗得差不多了，打开游戏，玩不下去；关掉，又不甘心。我在 Steam 上翻来翻去，没一个能填上这个窟窿。&lt;/p&gt;
 &lt;p&gt;我到底在找什么？我想自由地创作，亲手搭出点东西。那股劲还在，却找不到地方使。或许，是我对技术最原始的热情又醒了。或许，我该做一个自己的开源项目。别再是什么分布式系统、数据库、Agent 插件了。就做一个我自己感兴趣的东西，不依靠 Coding Agent，自己把它做出来。&lt;/p&gt;
 &lt;p&gt;我曾经想过自己做游戏。六年前，因为疫情居家，开始长时间接触电脑，那时候刚学 Python。我照着书里已经过时的 Pygame API，一边百度，一边翻 CSDN，做过一个很简陋的飞机大战。&lt;/p&gt;
@@ -28,9 +56,9 @@
     </item>
     <item>
       <title>AI时代的知识奶头乐</title>
-      <link>https://decglu.top/posts/cognitive-tittytainment/</link>
+      <link>http://localhost:1313/posts/cognitive-tittytainment/</link>
       <pubDate>Sat, 08 Aug 2026 04:45:34 +0800</pubDate>
-      <guid>https://decglu.top/posts/cognitive-tittytainment/</guid>
+      <guid>http://localhost:1313/posts/cognitive-tittytainment/</guid>
       <description>&lt;p&gt;我越来越担心一件事：AI正在悄悄改变我&amp;quot;学习&amp;quot;这个动作的形状。&lt;/p&gt;
 &lt;p&gt;以前想弄懂一个复杂问题，得自己去啃、去查、去碰壁，那种摩擦感——查资料的辛苦、想不通的卡顿——恰恰是深度理解得以发生的地方。现在这层摩擦几乎被抹平了。同时被削弱的还有学习到新知的正向反馈。问AI，答案立刻就来，流畅、自信、结构完整。AI时代提供给了我们“知识奶头乐”。它太方便了，方便到我开始怀疑：我是不是正在失去那种&amp;quot;自己动手够到知识&amp;quot;的原始热情？&lt;/p&gt;
 &lt;p&gt;AI本身也不是个省油的灯，它给出的答案本质上是概率模型的产物——是&amp;quot;平均的&amp;quot;、&amp;ldquo;大概的&amp;rdquo;、某个视角下的拼凑，甚至可能根本不是事实。但它说话的语气太笃定了，笃定到你根本不会去追问。它还会让你自信心满满，&amp;ldquo;You&amp;rsquo;re absolutely right!&amp;quot;，而可能根本不会意识到你观点的缺陷。这就像一个谀臣，无形中害了你。&lt;/p&gt;
@@ -40,9 +68,9 @@
     </item>
     <item>
       <title>鱼骨chat法</title>
-      <link>https://decglu.top/posts/fishbone-chat/</link>
+      <link>http://localhost:1313/posts/fishbone-chat/</link>
       <pubDate>Sun, 24 May 2026 17:43:41 +0800</pubDate>
-      <guid>https://decglu.top/posts/fishbone-chat/</guid>
+      <guid>http://localhost:1313/posts/fishbone-chat/</guid>
       <description>&lt;p&gt;用 AI 编程助手写代码，最让人头疼的问题之一是&lt;strong&gt;上下文污染&lt;/strong&gt;——主线讨论越来越长，早期的废弃方案、跑偏的对话开始干扰模型的判断，回答质量也跟着劣化。&lt;/p&gt;
 &lt;p&gt;我现在用一种叫「鱼骨 Chat 法」的方式来应对这个问题。&lt;/p&gt;
 &lt;p&gt;思路很简单：以鱼骨图为隐喻，&lt;strong&gt;主干是一个贯穿始终的主线 session&lt;/strong&gt;，负责记录整体设计思路、模块划分和关键决策；&lt;strong&gt;每一根鱼刺是一个独立的子 session&lt;/strong&gt;，只处理一个具体问题——比如某个函数的实现、一个报错的调试、或者一段逻辑的优化。子问题解决后，把结论带回主线 session 即可，那根鱼刺的使命就完成了。&lt;/p&gt;
@@ -51,9 +79,9 @@
     </item>
     <item>
       <title>黄山奇石</title>
-      <link>https://decglu.top/posts/huangshan-strange-rock/</link>
+      <link>http://localhost:1313/posts/huangshan-strange-rock/</link>
       <pubDate>Fri, 10 Apr 2026 23:46:08 +0800</pubDate>
-      <guid>https://decglu.top/posts/huangshan-strange-rock/</guid>
+      <guid>http://localhost:1313/posts/huangshan-strange-rock/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;vibe coding 派还在 code&lt;/li&gt;
 &lt;li&gt;你说什么？&lt;/li&gt;
@@ -64,9 +92,9 @@
     </item>
     <item>
       <title>分布式系统一致性</title>
-      <link>https://decglu.top/posts/distributed-system-consistency/</link>
+      <link>http://localhost:1313/posts/distributed-system-consistency/</link>
       <pubDate>Tue, 24 Feb 2026 22:20:41 +0800</pubDate>
-      <guid>https://decglu.top/posts/distributed-system-consistency/</guid>
+      <guid>http://localhost:1313/posts/distributed-system-consistency/</guid>
       <description>&lt;p&gt;在分布式系统中，一致性模型定义了多节点间数据更新的可见顺序与实时性，是权衡性能、可用性和正确性的核心。四个经典模型从强到弱依次为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -109,9 +137,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>Linux C/C&#43;&#43; IO多路复用</title>
-      <link>https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/</link>
+      <link>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</link>
       <pubDate>Thu, 21 Aug 2025 01:07:55 +0800</pubDate>
-      <guid>https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/</guid>
+      <guid>http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/</guid>
       <description>&lt;p&gt;在linux服务器编写中，为每个连接单独开一个进程/线程不现实，&lt;/p&gt;
 &lt;p&gt;我们采用io多路复用。&lt;/p&gt;
 &lt;h2 id=&#34;基本tcp-socket模型&#34;&gt;基本TCP socket模型&lt;/h2&gt;
@@ -152,9 +180,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>零拷贝技术</title>
-      <link>https://decglu.top/posts/zero-copy-tech/</link>
+      <link>http://localhost:1313/posts/zero-copy-tech/</link>
       <pubDate>Thu, 21 Aug 2025 01:07:12 +0800</pubDate>
-      <guid>https://decglu.top/posts/zero-copy-tech/</guid>
+      <guid>http://localhost:1313/posts/zero-copy-tech/</guid>
       <description>&lt;h2 id=&#34;什么是零拷贝&#34;&gt;什么是零拷贝？&lt;/h2&gt;
 &lt;p&gt;利用直接内存访问（Direct Memory Access，DMA），消除数据在内存中不必要的拷贝，即零拷贝技术（Zero-Copy）。&lt;/p&gt;
 &lt;p&gt;零拷贝不是没有任何复制，而是消除了消耗CPU和内存带宽的不必要的冗余复制。&lt;/p&gt;
@@ -204,9 +232,9 @@ Thread 2: y=1 r2=x
     </item>
     <item>
       <title>SQL和数据库管理系统（MySQL）</title>
-      <link>https://decglu.top/posts/sql-and-db-management-system-mysql/</link>
+      <link>http://localhost:1313/posts/sql-and-db-management-system-mysql/</link>
       <pubDate>Sat, 02 Aug 2025 15:46:23 +0800</pubDate>
-      <guid>https://decglu.top/posts/sql-and-db-management-system-mysql/</guid>
+      <guid>http://localhost:1313/posts/sql-and-db-management-system-mysql/</guid>
       <description>&lt;h2 id=&#34;为什么需要数据库&#34;&gt;为什么需要数据库？&lt;/h2&gt;
 &lt;p&gt;数据太多，文件搞不定。&lt;/p&gt;
 &lt;ul&gt;

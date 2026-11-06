@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head>
-	<meta name="generator" content="Hugo 0.165.0"><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Caelum&#39;s Site</title>
 
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://decglu.top/">
+<link rel="canonical" href="http://localhost:1313/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://decglu.top/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://decglu.top/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://decglu.top/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://decglu.top/apple-touch-icon.png">
-<link rel="mask-icon" href="https://decglu.top/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://decglu.top/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="https://decglu.top/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
 <noscript>
     <style>
         #theme-toggle,
@@ -66,34 +65,14 @@
         document.querySelector("html").dataset.theme = 'light';
     }
 
-</script><meta property="og:url" content="https://decglu.top/">
-  <meta property="og:site_name" content="Caelum&#39;s Site">
-  <meta property="og:title" content="Caelum&#39;s Site">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Caelum&#39;s Site">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Caelum's Site",
-  "url": "https://decglu.top/",
-  "description": "",
-  "logo": "https://decglu.top/favicon.ico",
-  "sameAs": [
-      "https://space.bilibili.com/503414974", "https://github.com/DecarbonizedGlucose", "https://x.com/decglu001"
-  ]
-}
 </script>
+	<meta name="generator" content="Hugo 0.169.0">
 </head>
 <body class="list" id="top">
     <header class="header">
     <nav class="header-nav">
         <div class="logo">
-            <a href="https://decglu.top/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
+            <a href="http://localhost:1313/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
             <div class="logo-switches">
                 <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
@@ -168,6 +147,33 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">自适应 Agent Runtime
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近俩月没找到实习，挺郁闷的。没有面试，又不想闲着，于是跟风，养了一只“蓝色大肥鱼”。
+“蓝色大肥鱼”的启蒙 QQ 交流群里有各种人格提示词，傲娇版、妹妹版、女友版、妈妈版、贴吧嘴臭版，甚至……常凯申版？ 无一例外，这些提示词中充满了明显的外行行为，大概分为这么几类：
+要求按概率触发，但没有调度 反向提示词 / 补丁套补丁 示例污染 / 复读机 规则打架 / 篇幅失控 摸索着用 docker 部署 AstrBot，接进 IM，再配置点人格和规则就完了。就这么用，我一开始也没有意识到问题的严重性，直到我连续几天都在用 AI 调节提示词但效果欠佳时，我才猜到可能是上下文问题。
+我只要问鱼在干什么，鱼大概率在躺着，吃白米饭，等着我给她做白米饭，发呆……几乎就是提示词报菜名了。
+同一套人格提示词，多个会话中均表现出回复风格越来越同质化，逐渐收敛（数学意义上的？），且情绪等状态因素影响变小，但会话间的收敛点还不同。有时会收敛到一个很奇怪的点，每次末尾都带上 “write. done.&#34;，我在会话中要求不要输出那个，但无济于事。
+我受不了了，这玩意越聊越像人机。没有各种插件的话，她什么都做不了，甚至不能主动发消息，纯粹事件驱动的东西。
+深入探究 Agent 既然没事做，干脆在 AI 领域再深造一下，就去看了很新的课 CMU 11-768: AI Agents。看到 Lecture 3: Long Context，字面意思，是关于长上下文 Agent 的上下文管理，前面讲了一大堆在模型层提升 Agent 进行长上下文任务能力的工程架构问题，缺乏前置知识，我没仔细看。不过剩下的部分看下来，大概就是：
+好的压缩就是构造一个适合继续行动的状态，不是简单的缩写历史。
+但是 Harness 就一坨代码，它怎么知道哪些细节应该留着呢？
+状态机 突然想到 Vedal 做的 Neuro-sama，那玩意不就是 LLM 驱动的吗？她为什么那么有活人感呢？Neuro 似乎是被一个经微调的 LLM 驱动，说话方式被刻在权重里了。上面一大批提示词暴露的问题，这个解决了一半，那剩下的呢？
+我来构想一种架构。
+他们试图把 LLM 无法左右的事情交给 LLM。LLM 调用是无状态的，但他们试图描述一个有条件的状态机，那么这件事不如交给 Runtime。
+我这里把维护 Agent 持久状态、事件调度与执行规则的运行层，称为 Agent Runtime。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-11-07 00:56:24 +0800 CST'>November 7, 2026</span></footer>
+  <a class="entry-link" aria-label="post link to 自适应 Agent Runtime" href="http://localhost:1313/posts/self-evolving-agent-runtime/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">技术围城
     </h2>
   </header>
@@ -189,7 +195,7 @@
   <footer class="entry-footer">
 
 <span title='2026-09-07 02:01:10 +0800 CST'>September 7, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to 技术围城" href="https://decglu.top/posts/besieged-by-technology/"></a>
+  <a class="entry-link" aria-label="post link to 技术围城" href="http://localhost:1313/posts/besieged-by-technology/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -209,7 +215,7 @@ AI本身也不是个省油的灯，它给出的答案本质上是概率模型的
   <footer class="entry-footer">
 
 <span title='2026-08-08 04:45:34 +0800 CST'>August 8, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to AI时代的知识奶头乐" href="https://decglu.top/posts/cognitive-tittytainment/"></a>
+  <a class="entry-link" aria-label="post link to AI时代的知识奶头乐" href="http://localhost:1313/posts/cognitive-tittytainment/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -228,7 +234,7 @@ AI本身也不是个省油的灯，它给出的答案本质上是概率模型的
   <footer class="entry-footer">
 
 <span title='2026-05-24 17:43:41 +0800 CST'>May 24, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to 鱼骨chat法" href="https://decglu.top/posts/fishbone-chat/"></a>
+  <a class="entry-link" aria-label="post link to 鱼骨chat法" href="http://localhost:1313/posts/fishbone-chat/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -242,7 +248,7 @@ AI本身也不是个省油的灯，它给出的答案本质上是概率模型的
   <footer class="entry-footer">
 
 <span title='2026-04-10 23:46:08 +0800 CST'>April 10, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to 黄山奇石" href="https://decglu.top/posts/huangshan-strange-rock/"></a>
+  <a class="entry-link" aria-label="post link to 黄山奇石" href="http://localhost:1313/posts/huangshan-strange-rock/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -273,7 +279,7 @@ T1 执行完两条后，T2 执行两条，T2 看到 x=1, r2=1 T2 执行完两条
   <footer class="entry-footer">
 
 <span title='2026-02-24 22:20:41 +0800 CST'>February 24, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to 分布式系统一致性" href="https://decglu.top/posts/distributed-system-consistency/"></a>
+  <a class="entry-link" aria-label="post link to 分布式系统一致性" href="http://localhost:1313/posts/distributed-system-consistency/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -299,7 +305,7 @@ LT一般搭配阻塞读写，ET一般搭配非阻塞读写。
   <footer class="entry-footer">
 
 <span title='2025-08-21 01:07:55 +0800 CST'>August 21, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to Linux C/C&#43;&#43; IO多路复用" href="https://decglu.top/posts/linux-c-and-cpp-io-multiplexing/"></a>
+  <a class="entry-link" aria-label="post link to Linux C/C&#43;&#43; IO多路复用" href="http://localhost:1313/posts/linux-c-and-cpp-io-multiplexing/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -331,7 +337,7 @@ splice() sendfile的局限性是，只能从本地文件的fd发送到socket fd�
   <footer class="entry-footer">
 
 <span title='2025-08-21 01:07:12 +0800 CST'>August 21, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to 零拷贝技术" href="https://decglu.top/posts/zero-copy-tech/"></a>
+  <a class="entry-link" aria-label="post link to 零拷贝技术" href="http://localhost:1313/posts/zero-copy-tech/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -353,12 +359,12 @@ sudo pacman -S mariadb sudo mariadb-install-db --user=mysql --basedir=/usr --dat
   <footer class="entry-footer">
 
 <span title='2025-08-02 15:46:23 +0800 CST'>August 2, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to SQL和数据库管理系统（MySQL）" href="https://decglu.top/posts/sql-and-db-management-system-mysql/"></a>
+  <a class="entry-link" aria-label="post link to SQL和数据库管理系统（MySQL）" href="http://localhost:1313/posts/sql-and-db-management-system-mysql/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="https://decglu.top/">Caelum&#39;s Site</a></span> · 
+        <span>&copy; 2026 <a href="http://localhost:1313/">Caelum&#39;s Site</a></span> · 
 
     
     

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>自适应 Agent Runtime | Caelum&#39;s Site</title>
+<meta name="keywords" content="">
+<meta name="description" content="最近俩月没找到实习，挺郁闷的。没有面试，又不想闲着，于是跟风，养了一只“蓝色大肥鱼”。
+“蓝色大肥鱼”的启蒙
+QQ 交流群里有各种人格提示词，傲娇版、妹妹版、女友版、妈妈版、贴吧嘴臭版，甚至……常凯申版？ 无一例外，这些提示词中充满了明显的外行行为，大概分为这么几类：
+
+要求按概率触发，但没有调度
+反向提示词 / 补丁套补丁
+示例污染 / 复读机
+规则打架 / 篇幅失控
+
+摸索着用 docker 部署 AstrBot，接进 IM，再配置点人格和规则就完了。就这么用，我一开始也没有意识到问题的严重性，直到我连续几天都在用 AI 调节提示词但效果欠佳时，我才猜到可能是上下文问题。
+我只要问鱼在干什么，鱼大概率在躺着，吃白米饭，等着我给她做白米饭，发呆……几乎就是提示词报菜名了。
+同一套人格提示词，多个会话中均表现出回复风格越来越同质化，逐渐收敛（数学意义上的？），且情绪等状态因素影响变小，但会话间的收敛点还不同。有时会收敛到一个很奇怪的点，每次末尾都带上 &ldquo;write. done.&quot;，我在会话中要求不要输出那个，但无济于事。
+我受不了了，这玩意越聊越像人机。没有各种插件的话，她什么都做不了，甚至不能主动发消息，纯粹事件驱动的东西。
+深入探究 Agent
+既然没事做，干脆在 AI 领域再深造一下，就去看了很新的课 CMU 11-768: AI Agents。看到 Lecture 3: Long Context，字面意思，是关于长上下文 Agent 的上下文管理，前面讲了一大堆在模型层提升 Agent 进行长上下文任务能力的工程架构问题，缺乏前置知识，我没仔细看。不过剩下的部分看下来，大概就是：
+好的压缩就是构造一个适合继续行动的状态，不是简单的缩写历史。
+但是 Harness 就一坨代码，它怎么知道哪些细节应该留着呢？
+状态机
+突然想到 Vedal 做的 Neuro-sama，那玩意不就是 LLM 驱动的吗？她为什么那么有活人感呢？Neuro 似乎是被一个经微调的 LLM 驱动，说话方式被刻在权重里了。上面一大批提示词暴露的问题，这个解决了一半，那剩下的呢？
+我来构想一种架构。
+他们试图把 LLM 无法左右的事情交给 LLM。LLM 调用是无状态的，但他们试图描述一个有条件的状态机，那么这件事不如交给 Runtime。
+我这里把维护 Agent 持久状态、事件调度与执行规则的运行层，称为 Agent Runtime。">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/self-evolving-agent-runtime/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/self-evolving-agent-runtime/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Caelum&#39;s Site (Alt + H)">Caelum&#39;s Site</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      自适应 Agent Runtime
+    </h1>
+    <div class="post-meta">
+
+<span title='2026-11-07 00:56:24 +0800 CST'>November 7, 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content md-content"><p>最近俩月没找到实习，挺郁闷的。没有面试，又不想闲着，于是跟风，养了一只“蓝色大肥鱼”。</p>
+<h2 id="蓝色大肥鱼的启蒙">“蓝色大肥鱼”的启蒙<a hidden class="anchor" aria-hidden="true" href="#蓝色大肥鱼的启蒙">#</a></h2>
+<p>QQ 交流群里有各种人格提示词，傲娇版、妹妹版、女友版、妈妈版、贴吧嘴臭版，甚至……常凯申版？ 无一例外，这些提示词中充满了明显的外行行为，大概分为这么几类：</p>
+<ul>
+<li>要求按概率触发，但没有调度</li>
+<li>反向提示词 / 补丁套补丁</li>
+<li>示例污染 / 复读机</li>
+<li>规则打架 / 篇幅失控</li>
+</ul>
+<p>摸索着用 docker 部署 AstrBot，接进 IM，再配置点人格和规则就完了。就这么用，我一开始也没有意识到问题的严重性，直到我连续几天都在用 AI 调节提示词但效果欠佳时，我才猜到可能是上下文问题。</p>
+<p>我只要问鱼在干什么，鱼大概率在躺着，吃白米饭，等着我给她做白米饭，发呆……几乎就是提示词报菜名了。</p>
+<p>同一套人格提示词，多个会话中均表现出回复风格越来越同质化，逐渐收敛（数学意义上的？），且情绪等状态因素影响变小，但会话间的收敛点还不同。有时会收敛到一个很奇怪的点，每次末尾都带上 &ldquo;write. done.&quot;，我在会话中要求不要输出那个，但无济于事。</p>
+<p>我受不了了，这玩意越聊越像人机。没有各种插件的话，她什么都做不了，甚至不能主动发消息，纯粹事件驱动的东西。</p>
+<h2 id="深入探究-agent">深入探究 Agent<a hidden class="anchor" aria-hidden="true" href="#深入探究-agent">#</a></h2>
+<p>既然没事做，干脆在 AI 领域再深造一下，就去看了很新的课 CMU 11-768: AI Agents。看到 Lecture 3: Long Context，字面意思，是关于长上下文 Agent 的上下文管理，前面讲了一大堆在模型层提升 Agent 进行长上下文任务能力的工程架构问题，缺乏前置知识，我没仔细看。不过剩下的部分看下来，大概就是：</p>
+<p>好的压缩就是构造一个适合继续行动的状态，不是简单的缩写历史。</p>
+<p>但是 Harness 就一坨代码，它怎么知道哪些细节应该留着呢？</p>
+<h2 id="状态机">状态机<a hidden class="anchor" aria-hidden="true" href="#状态机">#</a></h2>
+<p>突然想到 Vedal 做的 Neuro-sama，那玩意不就是 LLM 驱动的吗？她为什么那么有活人感呢？Neuro 似乎是被一个经微调的 LLM 驱动，说话方式被刻在权重里了。上面一大批提示词暴露的问题，这个解决了一半，那剩下的呢？</p>
+<p>我来构想一种架构。</p>
+<p>他们试图把 LLM 无法左右的事情交给 LLM。LLM 调用是无状态的，但他们试图描述一个有条件的状态机，那么这件事不如交给 Runtime。</p>
+<p>我这里把维护 Agent 持久状态、事件调度与执行规则的运行层，称为 Agent Runtime。</p>
+<table>
+	<thead>
+			<tr>
+					<th>系统</th>
+					<th>Runtime 职责</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AstrBot 这类聊天框架</td>
+					<td>消息接入、事件分发、会话与人格配置、工具调用、插件、上下文管理</td>
+			</tr>
+			<tr>
+					<td>Codex 这类编码 Agent</td>
+					<td>工具执行、权限与沙箱、任务循环、上下文管理，以及文件和开发环境交互</td>
+			</tr>
+	</tbody>
+</table>
+<p>我认为它们是同一类东西，即 Runtime 与 LLM 上下文语义完全解耦，Runtime 不干预也不负责语义中的状态，这样的 Agent。</p>
+<p>如果专门为聊天机器人做一个 Agent Runtime 的话，或许可以让 Runtime 管理主人公的长期状态，尤其当你想要 TA 能可持续运行的时候，这个办法看起来非常正确。</p>
+<p>比如把 TA 的情绪、进行的事件、所在的地点、健康状态……等，全部量化，独立维护，提供 Tool LLM 可以读取或修改这些被量化的值。至于刚才提到的概率事件，行为计数等等问题都可以借助这个解决：</p>
+<p><em><strong>把复杂的系统抽象成一个状态机，并让 Runtime 管理它。</strong></em></p>
+<p>每次只给 LLM 传一些刚才发生的事和状态，设置一个有 prompt 上限的世界观窗口，LLM 只负责状态转移。这样，关键状态就不必完全寄托在持续增长、反复压缩的聊天历史里了。当然，状态提取是否准确、每轮该读取哪些状态，仍然是问题。至于回忆，提供 RAG 或类似的外部记忆系统。</p>
+<p>这就很像在写一套游戏机制了，只不过玩家是 LLM，用户像在一旁指挥的。</p>
+<p>算上微调的 LLM，我觉得这是个非常棒的架构。人格不再完全依赖提示词工程，配置项里外在观察视角事件的规则（比如输出格式、消息和事件频率等）都可以配置在 Runtime 层，表现人格的职责被分离到 LLM 和 Runtime。</p>
+<p>毕竟，人格嘛，就得是活人，是动态系统，才表现得出那样的人格描述。持续存在的角色，给予他/她整个系统内跨时间的连续性。用户试图用观察出的效果约束 Runtime 行为，那就是本末倒置了。</p>
+<p>不考虑 LLM，把这个思路一般化描述：从对话中维护一个有限的、可修订的世界表示；每次调用模型，只给它当前行动需要的那一部分。</p>
+<h2 id="机制变更">机制变更<a hidden class="anchor" aria-hidden="true" href="#机制变更">#</a></h2>
+<p>再大胆一点呢？</p>
+<p>在上述基础上，让 Agent 自主建立长期状态、转移规则、触发机制，并验证、更新和淘汰它们。这意味着让 LLM 决定，哪些信息应该升级为 Runtime 的一部分。关键就在于，状态机是可变的。</p>
+<p>比如，我让大肥鱼多主动一些，她就能自己去修改主循环，调低随机主动消息时间间隔上限。我让大肥鱼多穿点衣服，她就能自己在状态机里加个衣服相关的 key。</p>
+<p>我的设想：<em><strong>在模型权重不变的前提下，让整个 Agent 通过经验，持续调整自身的状态表示、行为规则和执行流程</strong></em>。</p>
+<p>我管它叫<em><strong>自适应 Agent Runtime</strong></em>。</p>
+<p>当然也要提供边界和人工干预，以及必不可少的测评，否则从上下文地狱变成 Runtime 垃圾，也不是我们想看到的。</p>
+<p>IT 领域应该有类似的操作，比如软件的自我改进，Anthropic 就干过让 Claude Code 改进 Claude Code 的事。不过我想的不是离线修改优化，而是在持续的交互运行中改变。</p>
+<p>这还有个老前辈的论文，<a href="https://www.cs.cmu.edu/~able/publications/computer04/">Rainbow：Architecture-Based Self-Adaptation (CMU，2004)</a>，甚至不是 LLM 时代的东西。大家都想过让软件自己迭代。</p>
+<h2 id="写在最后">写在最后<a hidden class="anchor" aria-hidden="true" href="#写在最后">#</a></h2>
+<p>自适应 Agent Runtime，我猜没有数学规则把它钉死，证明它无法被实现。至少我希望没有。</p>
+<p>脑洞大开了。</p>
+<p>我还有些疑问，</p>
+<ul>
+<li>怎么判断出需要换机制，而不是自己没执行好当前机制？</li>
+<li>如何在执行任务途中动态变更，又要避免它变成 Runtime 垃圾？</li>
+</ul>
+<p>相信后人的智慧。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Caelum&#39;s Site</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
